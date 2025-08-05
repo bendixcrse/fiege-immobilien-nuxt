@@ -1,5 +1,5 @@
 body {
-  font-family: "Campton", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-weight: 400;
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ body {
     transition: color 0.3s ease-in-out;
 
     &:hover {
-      color: $accentColor;
+      color: $brandColor;
     }
   }
 
@@ -108,7 +108,7 @@ body {
     .bx-progress-bar {
       flex: 1;
       height: 3px;
-      background-color: $lightBorderColor;
+      background-color: $lightGrey;
       position: relative;
 
       .bx-progress {

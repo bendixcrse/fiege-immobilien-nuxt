@@ -35,6 +35,7 @@ useHead({
   <div>
     <div v-if="!page?.data?.slices || page?.data?.slices.length == 0" class="bx-title-container">
       <h1>{{ prismic.asText(page?.data?.title) }}</h1>
+      <PrismicRichText wrapper="div" class="bx-page-description-container" :field="page?.data?.description" />
     </div>
     <SliceZone v-else wrapper="main" :slices="page?.data?.slices ?? []" :components="components" />
   </div>
@@ -50,6 +51,11 @@ useHead({
     font-size: 26px;
     text-transform: uppercase;
     font-weight: bold;
+    margin-bottom: 46px;
+  }
+
+  .bx-page-description-container {
+    max-width: 1000px;
   }
 }
 </style>

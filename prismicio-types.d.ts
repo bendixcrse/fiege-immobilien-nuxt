@@ -165,6 +165,17 @@ interface GeneralSettingsDocumentData {
   address: prismic.KeyTextField;
 
   /**
+   * Contact Name field in *General Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: general_settings.contact_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  contact_name: prismic.KeyTextField;
+
+  /**
    * Contact Email field in *General Settings*
    *
    * - **Field Type**: Text
@@ -308,6 +319,17 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   title: prismic.RichTextField;
+
+  /**
+   * Description field in *Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Page*

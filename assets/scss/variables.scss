@@ -1,21 +1,21 @@
 @use "sass:color";
-@use "fonts";
+// @use "fonts";
 
-$boxedWidth: 1400px;
+$boxedWidth: 1500px;
 $relativeWidth: 90%;
 $tabletBreakpoint: 1000px;
 $mobileBreakpoint: 800px;
 
-$brandColor: #00263f;
-$accentColor: #dcff6f;
+$brandColor: #1b2c77;
+$secondaryColor: #70799e;
+$accentColor: #000;
 
-$lightBorderColor: #d1e3f5;
-$borderColor: #dcff6f;
-$linkHoverColor: #dcff6f;
+$borderColor: #000;
+$linkHoverColor: #000;
 
-$fontColor: #00263f;
-$backgroundColor: #f2f8ff;
-$darkBackgroundColor: #00263f;
+$fontColor: #000;
+$backgroundColor: #fff;
+$darkBackgroundColor: #000;
 
 $blackColor: #000;
 $whiteColor: #fff;

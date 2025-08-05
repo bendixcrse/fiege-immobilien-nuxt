@@ -27,11 +27,10 @@ const props = defineProps(["link", "contact_name", "contact_image"]);
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px 6px 6px;
+  padding: 0px 12px 0px 0px;
   cursor: pointer;
   box-sizing: border-box;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
-  border-radius: 50px;
   background-color: var(--background-color);
   color: var(--content-color);
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -40,7 +39,7 @@ const props = defineProps(["link", "contact_name", "contact_image"]);
   --background-color: #{$brandColor};
 
   &:hover {
-    --content-color: #{$fontColor};
+    --content-color: #{$whiteColor};
     --background-color: #{$accentColor};
 
     .bx-arrow {
@@ -49,9 +48,8 @@ const props = defineProps(["link", "contact_name", "contact_image"]);
   }
 
   .bx-contact-image {
-    height: 38px;
-    width: 38px;
-    border-radius: 50%;
+    height: 48px;
+    width: 48px;
     overflow: hidden;
     position: relative;
 
@@ -65,11 +63,10 @@ const props = defineProps(["link", "contact_name", "contact_image"]);
   .bx-button-text {
     font-size: 14px;
     line-height: 1;
-    position: relative;
-    top: 2px;
 
     .bx-text {
       font-weight: 500;
+      font-size: 16px;
     }
 
     .bx-contact-name {

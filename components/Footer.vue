@@ -7,6 +7,8 @@ const localePath = useLocalePath();
 <template>
   <div class="bx-footer-container">
     <div class="bx-boxed">
+      <PrismicImage class="bx-logo" v-if="settings?.data.logo.url" :field="settings?.data.logo"></PrismicImage>
+
       <div class="bx-company animate--slide-in scroll-trigger" data-cascade>
         {{ settings?.data.company }}
       </div>
@@ -15,7 +17,7 @@ const localePath = useLocalePath();
       </div>
       <div
         class="bx-telephone animate--slide-in scroll-trigger"
-        v-if="!!settings.data.contact_telephone"
+        v-if="!!settings?.data.contact_telephone"
         data-cascade
       >
         <a :href="'tel:' + settings?.data.contact_telephone">{{
@@ -42,7 +44,7 @@ const localePath = useLocalePath();
             class="animate--slide-in scroll-trigger"
             data-cascade
           >
-            <PrismicLink :document="link.url">{{ link.name }}</PrismicLink>
+            <PrismicLink :field="link.url">{{ link.name }}</PrismicLink>
           </li>
         </ul>
       </div>
@@ -54,8 +56,8 @@ const localePath = useLocalePath();
 
         <div class="bx-legal-menu-container">
           <ul>
-            <li v-for="link in settings?.data.legal_menu">
-              <PrismicLink :document="link.link">{{ link.name }}</PrismicLink>
+            <li v-for="(link, index) in settings?.data.legal_menu" :key="index">
+              <PrismicLink :field="link"></PrismicLink>
             </li>
           </ul>
         </div>
@@ -66,29 +68,28 @@ const localePath = useLocalePath();
 
 <style lang="scss" scoped>
 .bx-footer-container {
-  background-color: $brandColor;
+  background-color: $whiteColor;
   padding: 48px 0 36px;
   overflow: hidden;
-  --content-color: #{$whiteColor};
+  --content-color: #{$blackColor};
   color: var(--content-color);
+  border-top: 1px solid $lightGrey;
 
   @media (max-width: $mobileBreakpoint) {
     padding: 36px 0;
   }
 
-  a {
-    color: inherit;
-
-    &:hover {
-      color: $accentColor !important;
-    }
+  .bx-logo {
+    width: auto;
+    height: 38px;
+    margin-bottom: 32px;
   }
 
   .bx-company {
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 18px;
 
     @media (max-width: $mobileBreakpoint) {
       margin-bottom: 5px;
@@ -115,6 +116,10 @@ const localePath = useLocalePath();
     font-size: 20px;
     white-space: nowrap;
 
+    &:hover {
+      --content-color: #{$brandColor};
+    }
+
     @media (max-width: $mobileBreakpoint) {
       gap: 12px;
       font-size: 18px;
@@ -129,6 +134,7 @@ const localePath = useLocalePath();
       mask-repeat: no-repeat;
       mask-size: contain;
       background-color: var(--content-color);
+      transition: all 0.3s ease-in-out;
 
       @media (max-width: $mobileBreakpoint) {
         width: 18px;
@@ -148,7 +154,6 @@ const localePath = useLocalePath();
 
       li a {
         font-size: 16px;
-        color: inherit;
 
         @media (max-width: $mobileBreakpoint) {
           font-size: 14px;
@@ -191,7 +196,6 @@ const localePath = useLocalePath();
         li a {
           font-size: inherit;
           font-weight: inherit;
-          color: inherit;
         }
       }
     }

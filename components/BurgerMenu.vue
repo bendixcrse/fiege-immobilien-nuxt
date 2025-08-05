@@ -15,8 +15,15 @@ function submenuHasItems(subItems: any) {
 <template>
   <Transition name="burgerMenu">
     <div v-show="burgerMenu" class="bx-burger-menu-container">
+      <div class="bx-image-container">
+        <PrismicImage
+          v-if="settings?.data.menu_image?.url"
+          :field="settings?.data.menu_image"
+        />
+      </div>
       <div class="bx-menu-container">
         <div class="bx-centered">
+          <div class="bx-overline">Menu</div>
           <div
             v-for="(item, index) in settings?.data.menu"
             :key="index"
@@ -35,43 +42,33 @@ function submenuHasItems(subItems: any) {
                 </li>
               </ul>
             </div>
+          </div>
 
-            <div
-              v-if="
-                item.parent_link.text == $t('products') &&
-                settings?.data.products.length > 0
-              "
-              class="bx-products-row-container"
-            >
-              <div
-                @click="closeMenu"
-                class="bx-product-item"
-                v-for="(item, index) of settings?.data.products"
-                :key="index"
-              >
-                <PrismicLink :document="item.link">
-                  <div v-if="!!item.image.url" class="bx-image">
-                    <MediaItem :prismicMedia="item.image" :ratio="9 / 16" />
-                  </div>
-
-                  <h3>{{ item.title }}</h3>
-                </PrismicLink>
+          <div class="bx-contact-information-container">
+            <div class="bx-overline">Kontaktinformation</div>
+            <div class="bx-contact-items-container">
+              <div class="bx-contact-item email">
+                <a :href="'mailto:' + settings?.data.contact_email">{{
+                  settings?.data.contact_email
+                }}</a>
               </div>
+              <div class="bx-contact-item telephone">
+                <a :href="'tel:' + settings?.data.contact_telephone">{{
+                  settings?.data.contact_telephone
+                }}</a>
+              </div>
+              <div class="bx-contact-item location">{{ settings?.data.address }}</div>
             </div>
           </div>
         </div>
 
         <div class="bx-menu-item cta">
-          <!-- <PrismicLink class="bx-cta-button" :document="settings?.data.cta_button">{{
-            settings?.data.cta_button.text
-          }}</PrismicLink> -->
-
           <ContactButton
             class="bx-contact-button"
             v-if="settings?.data.cta_button"
             :link="settings?.data.cta_button"
-            :contact_name="'Johann Oesterwind'"
-            :contact_image="'https://images.prismic.io/bmms/aECh0bh8WN-LVnyM_1748419527118.jpeg?auto=format,compress&fit=crop&w=200&h=200'"
+            :contact_name="settings?.data.contact_name"
+            :contact_image="settings?.data.menu_image?.url"
           ></ContactButton>
         </div>
       </div>
@@ -100,90 +97,168 @@ function submenuHasItems(subItems: any) {
   display: flex;
   backdrop-filter: blur(20px);
   z-index: 99;
-  text-align: center;
-  background-color: rgba($darkBackgroundColor, 0.95);
+  background-color: rgba(#060918, 0.95);
   z-index: 999;
   color: #fff;
 
   align-items: flex-start;
-  padding: 96px 0 76px;
   justify-content: center;
   text-align: left;
   box-sizing: border-box;
 
-  .bx-products-row-container {
+  @media (max-width: $mobileBreakpoint) {
+    flex-direction: column;
+  }
+
+  .bx-image-container {
+    width: 50%;
     display: flex;
-    flex-flow: nowrap;
-    overflow-x: scroll;
-    gap: 6px;
-    margin: 2px 0 12px;
-    padding: 12px 0;
+    justify-content: center;
+    flex: 0 0 50%;
+    position: relative;
+    height: 100%;
 
-    .bx-product-item {
-      flex: 0 0 60%;
+    @media (max-width: $mobileBreakpoint) {
+      // flex: none;
+      // width: 100%;
+      // height: 300px;
+      display: none;
+    }
 
-      a {
-        color: #fff;
-        transition: color 0.3s ease-in-out;
-      }
-
-      h3 {
-        color: inherit;
-        font-size: 12px;
-        margin: 6px 0 0;
-        text-transform: uppercase;
-        font-weight: 300;
-      }
-
-      &:hover a {
-        color: $accentColor;
-      }
+    :deep(img) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
   }
 
   .bx-menu-container {
-    width: $relativeWidth;
+    width: 100%;
     max-width: $boxedWidth;
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 
     .bx-centered {
       display: flex;
       flex-direction: column;
-      gap: 32px;
-      align-items: center;
-      margin: auto;
+      gap: 8px;
+      align-items: flex-start;
+      margin: auto auto 0;
+      width: 85%;
+      padding: 120px 0 48px 0;
+
+      @media (max-width: $mobileBreakpoint) {
+        width: $relativeWidth;
+        padding: 96px 0 0px 0;
+        margin-bottom: auto;
+        margin-top: 0;
+        height: 100%;
+      }
+    }
+
+    .bx-overline {
+      color: $secondaryColor;
+      font-size: 12px;
+      margin-bottom: 6px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    
+    .bx-contact-information-container {
+      margin-top: 28px;
+      padding-top: 28px;
+      width: 100%;
+      
+      @media (max-width: $mobileBreakpoint) {
+        margin-top: auto;
+        margin-bottom: 56px;
+      }
+
+      .bx-overline {
+        margin-bottom: 16px;
+      }
+
+      .bx-contact-items-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .bx-contact-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+
+          &:before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            background-color: $secondaryColor;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+          }
+
+          &.email:before {
+            mask-image: url("~/assets/media/email-icon.svg");
+          }
+
+          &.telephone:before {
+            mask-image: url("~/assets/media/telephone-icon.svg");
+          }
+
+          &.location:before {
+            mask-image: url("~/assets/media/location-icon.svg");
+          }
+
+          a {
+            color: $whiteColor;
+          }
+        }
+      }
     }
 
     .bx-menu-item {
       &:not(.has-button) {
         a {
           color: inherit;
-          font-size: 24px;
+          font-size: 32px;
+          font-weight: 600;
+          transition: all 0.3s ease-in-out;
+
+          &.router-link-exact-active,
+          &:hover {
+            color: $secondaryColor;
+          }
         }
       }
 
       &.cta {
-        width: 100%;
+        width: $relativeWidth;
+        margin: 0 auto 36px;
+
+        @media (min-width: $mobileBreakpoint) {
+          display: none;
+        }
 
         .bx-contact-button {
           :deep(.bx-button-container) {
             gap: 12px;
-            --content-color: #{$fontColor};
-            --background-color: #{$accentColor};
 
             .bx-contact-image {
-              height: 42px;
-              width: 42px;
+              height: 58px;
+              width: 58px;
             }
 
-            .bx-button-text {
-              font-size: 16px;
-
-              .bx-contact-name {
-                font-size: 14px;
-              }
+            .bx-text {
+              font-size: 18px;
+              margin-bottom: 6px;
             }
 
             .bx-arrow {

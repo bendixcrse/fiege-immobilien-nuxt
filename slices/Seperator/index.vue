@@ -33,7 +33,7 @@ defineProps(
   margin-bottom: var(--spacing-bottom, 26px);
 
   &.with-line {
-    background-color: $lightBorderColor;
+    background-color: $blackColor;
   }
 }
 </style>

@@ -28,6 +28,13 @@
           "placeholder": ""
         }
       },
+      "contact_name": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Name",
+          "placeholder": ""
+        }
+      },
       "contact_email": {
         "type": "Text",
         "config": {

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
 const transparentHeader = useTransparentHeader();
-const hoveredMenuItem = useState("useHoveredMenuItem");
 const burgerMenu = useBurgerMenuOpen();
 const settings = useSettings();
 const alternateLanguages = useAlternateLanguages();
@@ -13,10 +12,6 @@ const header = reactive({ isHome: true });
 
 function toggleMenu() {
   burgerMenu.value = !burgerMenu.value;
-}
-
-function setHoveredMenuItem(title: any) {
-  hoveredMenuItem.value = title;
 }
 
 onMounted(() => {
@@ -37,11 +32,6 @@ watch(
   { deep: true, immediate: true }
 );
 
-function submenuHasItems(subItems: any) {
-  let nonEmptyItems = subItems.filter((item: any) => !!item.text);
-  return nonEmptyItems.length > 0;
-}
-
 async function scrollToTop() {
   await router.push(localePath({ path: "/" }));
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -52,44 +42,31 @@ async function scrollToTop() {
 <template>
   <div
     class="bx-header-container"
-    @mouseleave="setHoveredMenuItem(null)"
     :class="{
-      blur: !!settings?.data.logo.url || !header.isHome,
       transparent: transparentHeader,
       scrolled: isScrolled && settings?.data.logo.url,
       'menu-open': burgerMenu,
     }"
   >
     <div class="bx-inner">
-      <div class="bx-menu-col animate--slide-in scroll-trigger" :style="{'--animation-order': 1}">
-        <div class="bx-menu-container" v-show="false">
-          <ul>
-            <li
-              v-for="(item, index) of settings?.data.menu"
-              :key="index"
-              @mouseenter="setHoveredMenuItem(item.parent_link.text)"
-            >
-              <PrismicLink :document="item.parent_link">{{
-                item.parent_link.text
-              }}</PrismicLink>
+      <div
+        class="bx-logo-container animate--slide-in scroll-trigger"
+        :style="{ '--animation-order': 2 }"
+        @click="scrollToTop"
+      >
+        <PrismicImage v-if="settings?.data.logo.url" :field="settings?.data.logo"></PrismicImage>
+        <div class="bx-logo-text">{{ settings?.data.copyright }}</div>
+      </div>
 
-              <Submenu
-                v-show="
-                  hoveredMenuItem == item.parent_link.text &&
-                  submenuHasItems(item.sub_items)
-                "
-                :subItems="item.sub_items"
-                @mouseleave="hoveredMenuItem = null"
-              />
-            </li>
-          </ul>
-        </div>
-
-        <nav v-if="alternateLanguages.length > 0 || true" class="bx-languages-container">
+      <div
+        class="bx-menu-col animate--slide-in scroll-trigger"
+        :style="{ '--animation-order': 1 }"
+      >
+        <nav v-if="alternateLanguages.length > 0" class="bx-languages-container">
           <div class="bx-language-icon"></div>
           <ul>
             <li v-for="lang in alternateLanguages" :key="lang.lang">
-              <PrismicLink :document="{ ...lang, link_type: 'Document' }">
+              <PrismicLink :field="{ ...lang, link_type: 'Document' }">
                 <span class="sr-only">{{ lang.lang.split("-")[0] }}</span>
               </PrismicLink>
             </li>
@@ -97,20 +74,16 @@ async function scrollToTop() {
         </nav>
       </div>
 
-      <div class="bx-logo-container  animate--slide-in scroll-trigger" :style="{'--animation-order': 2}" @click="scrollToTop">
-        <PrismicImage v-if="settings?.data.logo.url" :field="settings?.data.logo" />
-        <div v-else-if="!header.isHome" class="bx-back-button">
-          {{ $t("backHome") }}
-        </div>
-      </div>
-
-      <div class="bx-actions-col  animate--slide-in scroll-trigger" :style="{'--animation-order': 3}">
+      <div
+        class="bx-actions-col animate--slide-in scroll-trigger"
+        :style="{ '--animation-order': 3 }"
+      >
         <ContactButton
           class="bx-contact-button"
           v-if="settings?.data.cta_button"
           :link="settings?.data.cta_button"
-          :contact_name="'Johann Oesterwind'"
-          :contact_image="'https://images.prismic.io/bmms/aECh0bh8WN-LVnyM_1748419527118.jpeg?auto=format,compress&fit=crop&w=200&h=200'"
+          :contact_name="settings?.data.contact_name"
+          :contact_image="settings?.data.menu_image?.url"
         ></ContactButton>
 
         <div @click="toggleMenu" :class="{ close: burgerMenu }" class="bx-menu-button">
@@ -121,8 +94,6 @@ async function scrollToTop() {
         </div>
       </div>
     </div>
-
-    <ProductsSubmenu />
   </div>
 </template>
 
@@ -135,8 +106,8 @@ async function scrollToTop() {
   z-index: 9999;
   transition: background-color 0.3s ease-in-out;
   background-color: $backgroundColor;
-  border-bottom: 1px solid rgba($lightBorderColor, 0.6);
   --content-color: #{$darkBackgroundColor};
+  border-bottom: 1px solid $lightGrey;
 
   &.transparent {
     position: fixed;
@@ -148,8 +119,6 @@ async function scrollToTop() {
   }
 
   &.transparent:not(.scrolled) {
-    border-bottom: 1px solid rgba($lightBorderColor, 0.05);
-
     .bx-logo-container {
       filter: invert(1);
     }
@@ -159,10 +128,13 @@ async function scrollToTop() {
     background-color: $backgroundColor;
     --content-color: #{$darkBackgroundColor};
 
-    .bx-logo-container img {
-      width: 40px;
+    .bx-logo-container {
+      .bx-logo-text {
+        transform: translate(-5px, 0);
+        opacity: 0;
+      }
 
-      @media (max-width: $mobileBreakpoint) {
+      :deep(img) {
         width: 32px;
       }
     }
@@ -175,10 +147,6 @@ async function scrollToTop() {
     max-width: $boxedWidth;
     width: $relativeWidth;
     margin: auto;
-  }
-
-  &.blur {
-    // backdrop-filter: blur(10px);
   }
 
   .bx-menu-container {
@@ -220,11 +188,7 @@ async function scrollToTop() {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 18px;
-
-    @media (max-width: $mobileBreakpoint) {
-      gap: 12px;
-    }
+    gap: 48px;
   }
 
   .bx-logo-container {
@@ -232,20 +196,29 @@ async function scrollToTop() {
     user-select: none;
     filter: invert(0);
     transition: filter 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .bx-logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+      transition: all 0.3s ease-in-out;
+      transform: translate(0, 0);
+      opacity: 1;
+    }
 
     a {
       display: inline-block;
     }
 
-    img {
+    :deep(img) {
       user-select: none;
       cursor: pointer;
-      width: 56px;
+      width: 42px;
       transition: width 0.3s ease-in-out;
-
-      @media (max-width: $mobileBreakpoint) {
-        width: 48px;
-      }
+      height: auto;
     }
   }
 
@@ -282,8 +255,6 @@ async function scrollToTop() {
       list-style-type: none;
       margin: 0;
       padding: 0;
-      position: relative;
-      top: 2px;
 
       li {
         text-transform: uppercase;
@@ -299,16 +270,10 @@ async function scrollToTop() {
 
   .bx-menu-button {
     cursor: pointer;
-    height: 12px;
-    width: 32px;
+    height: 44px;
+    width: 44px;
     z-index: 9999;
     position: relative;
-    display: none;
-    margin-left: auto;
-
-    @media (max-width: $mobileBreakpoint) {
-      display: block;
-    }
 
     span {
       height: 2px;
@@ -320,15 +285,16 @@ async function scrollToTop() {
       transition: all 0.3s ease-in-out;
 
       &.top {
-        top: 0;
+        top: 16px;
       }
 
       &.middle {
         top: 50%;
+        width: 0;
       }
 
       &.bottom {
-        top: 100%;
+        bottom: 16px;
       }
     }
 
@@ -339,6 +305,8 @@ async function scrollToTop() {
       }
 
       &.middle {
+        width: 75%;
+
         &.x-1 {
           transform: translate(-50%, -50%) rotate(45deg);
         }

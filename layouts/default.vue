@@ -13,6 +13,6 @@
 
 <style>
 main {
-  min-height: 80svh;
+  min-height: 60svh;
 }
 </style>
