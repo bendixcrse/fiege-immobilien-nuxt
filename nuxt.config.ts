@@ -15,6 +15,30 @@ export default defineNuxtConfig({
     },
   },
 
+  hooks: {
+    async "prerender:routes"(ctx: any) {
+      const prismicClient = createClient(repositoryName);
+
+      // German pages
+      let pages: any = await prismicClient.getAllByType("page");
+      pages = pages.map((i: any) => `/${i.uid}`);
+      pages = pages.filter((i: any) => i != "/home");
+      pages.push("/");
+
+      // English pages
+      // let enPages: any = await prismicClient.getAllByType("page", {
+      //   lang: "en-US",
+      // });
+      // enPages = enPages.map((i: any) => `/en/${i.uid}`);
+      // enPages = enPages.filter((i: any) => !i.includes("/home"));
+      // enPages.push("/en");
+      // pages = pages.concat(enPages);
+
+      pages.forEach((item: string) => ctx.routes.add(item));
+      return ctx;
+    },
+  },
+
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
