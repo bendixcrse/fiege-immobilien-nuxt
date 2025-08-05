@@ -109,6 +109,10 @@ async function scrollToTop() {
   --content-color: #{$darkBackgroundColor};
   border-bottom: 1px solid $lightGrey;
 
+  @media (max-width: $mobileBreakpoint) {
+    padding: 6px 0;
+  }
+
   &.transparent {
     position: fixed;
     left: 0;
@@ -135,7 +139,7 @@ async function scrollToTop() {
       }
 
       :deep(img) {
-        width: 32px;
+        width: 36px;
       }
     }
   }
@@ -207,6 +211,10 @@ async function scrollToTop() {
       transition: all 0.3s ease-in-out;
       transform: translate(0, 0);
       opacity: 1;
+
+      @media(max-width: $mobileBreakpoint) {
+        font-size: 1.2rem;
+      }
     }
 
     a {

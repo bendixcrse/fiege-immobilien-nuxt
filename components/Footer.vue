@@ -76,7 +76,7 @@ const localePath = useLocalePath();
   border-top: 1px solid $lightGrey;
 
   @media (max-width: $mobileBreakpoint) {
-    padding: 36px 0;
+    padding: 28px 0;
   }
 
   .bx-logo {

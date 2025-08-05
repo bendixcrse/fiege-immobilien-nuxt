@@ -40,7 +40,7 @@ const props = defineProps(["link", "contact_name", "contact_image"]);
 
   &:hover {
     --content-color: #{$whiteColor};
-    --background-color: #{$accentColor};
+    --background-color: #{$secondaryColor};
 
     .bx-arrow {
       left: 4px;
@@ -48,15 +48,15 @@ const props = defineProps(["link", "contact_name", "contact_image"]);
   }
 
   .bx-contact-image {
-    height: 48px;
-    width: 48px;
     overflow: hidden;
     position: relative;
-
+    line-height: 0;
+    
     img {
-      width: 100%;
-      height: 100%;
+      height: 48px;
+      width: 48px;
       object-fit: cover;
+      object-position: center;
     }
   }
 
