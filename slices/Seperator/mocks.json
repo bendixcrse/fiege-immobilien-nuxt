@@ -1,0 +1,28 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"top_space": {
+				"__TYPE__": "FieldContent",
+				"value": "21",
+				"type": "Number"
+			},
+			"bottom_space": {
+				"__TYPE__": "FieldContent",
+				"value": "48",
+				"type": "Number"
+			},
+			"show_line": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"anchor_id": {
+				"__TYPE__": "FieldContent",
+				"value": "view",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

@@ -1,0 +1,38 @@
+{
+  "name": "nuxt-starter-prismic-minimal",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Prismic <contact@prismic.io> (https://prismic.io)",
+  "scripts": {
+    "dev": "concurrently \"npm:nuxt:dev\" \"npm:slicemachine\" --names \"nuxt,slicemachine\" --prefix-colors green,magenta",
+    "nuxt:dev": "nuxt dev --host",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "slicemachine": "start-slicemachine",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "2.6.2",
+    "@nuxt/eslint-config": "1.7.1",
+    "@nuxtjs/i18n": "9.5.5",
+    "@nuxtjs/prismic": "^4.1.0",
+    "@nuxtjs/seo": "^3.1.0",
+    "@slicemachine/adapter-nuxt": "^0.3.77",
+    "concurrently": "9.2.0",
+    "eslint": "^9.32.0",
+    "nuxt-gtag": "^3.0.3",
+    "nuxt-swiper": "^2.0.1",
+    "sass": "1.89.2",
+    "slice-machine-ui": "^2.17.1",
+    "swiper": "^11.2.10"
+  },
+  "dependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "nuxt": "^3.18.1",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1"
+  }
+}

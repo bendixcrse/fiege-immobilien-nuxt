@@ -1,0 +1,107 @@
+{
+  "id": "parallax",
+  "type": "SharedSlice",
+  "name": "Parallax",
+  "description": "Parallax",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "background_media": {
+          "type": "Link",
+          "config": {
+            "label": "Background Media",
+            "placeholder": "",
+            "select": "media"
+          }
+        },
+        "overline": {
+          "type": "Text",
+          "config": {
+            "label": "Overline",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "button": {
+          "type": "Link",
+          "config": {
+            "label": "Button",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true
+          }
+        },
+        "desktop_ratio": {
+          "type": "Number",
+          "config": {
+            "label": "Desktop Ratio",
+            "placeholder": ""
+          }
+        },
+        "mobile_ratio": {
+          "type": "Number",
+          "config": {
+            "label": "Mobile Ratio",
+            "placeholder": ""
+          }
+        },
+        "anchor_id": {
+          "type": "Text",
+          "config": {
+            "label": "Anchor ID",
+            "placeholder": ""
+          }
+        },
+        "title_tag": {
+          "type": "Select",
+          "config": {
+            "label": "Title Tag",
+            "placeholder": "",
+            "options": [
+              "h2",
+              "h1"
+            ],
+            "default_value": "h2"
+          }
+        },
+        "content_vertical_spacing": {
+          "type": "Number",
+          "config": {
+            "label": "Content Vertical Spacing",
+            "placeholder": ""
+          }
+        },
+        "mobile_content_vertical_spacing": {
+          "type": "Number",
+          "config": {
+            "label": "Mobile Content Vertical Spacing",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

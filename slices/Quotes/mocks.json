@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Occaecat ea esse aliquip consequat ex nulla minim proident magna ullamco consequat ad occaecat ipsum. Ullamco non tempor consequat sint deserunt tempor consequat proident voluptate dolore Lorem nisi."
+						}
+					}
+				]
+			},
+			"subtitle": {
+				"__TYPE__": "FieldContent",
+				"value": "period",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

@@ -1,0 +1,216 @@
+body {
+  font-family: "Campton", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+
+  background-color: $backgroundColor;
+  color: $fontColor;
+
+  a {
+    color: $fontColor;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $accentColor;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 28px;
+
+    @media(max-width: $mobileBreakpoint) {
+      font-size: 24px;
+    }
+  }
+
+  .bx-overline {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $accentColor;
+    font-size: 16px;
+  }
+
+  .bx-decoration-line {
+    width: 60px;
+    height: 4px;
+    background-color: $accentColor;
+    margin: 12px auto 0;
+  }
+
+  .bx-boxed {
+    max-width: $boxedWidth;
+    width: $relativeWidth;
+    margin: auto;
+  }
+
+  .page-enter-active,
+  .page-leave-active {
+    transition: all 0.4s;
+  }
+
+  .page-enter-from,
+  .page-leave-to {
+    opacity: 0;
+    filter: blur(1rem);
+  }
+
+  .bx-cta-button {
+    display: inline-block;
+    padding: 12px 18px 10px 18px;
+    background-color: $accentColor;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50px;
+    color: $fontColor;
+
+    &:after {
+      content: "";
+      display: block;
+      height: 22px;
+      width: 18px;
+      mask-image: url(~/assets/media/arrow-black.svg);
+      mask-position: center;
+      mask-repeat: no-repeat;
+      background-color: $fontColor;
+
+      @media(max-width: $mobileBreakpoint) {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+
+  .bx-controls-container {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    margin: 32px auto 100px;
+    max-width: $boxedWidth;
+    justify-content: center;
+
+    @media (max-width: $mobileBreakpoint) {
+      margin-bottom: 50px;
+    }
+
+    .bx-progress-bar {
+      flex: 1;
+      height: 3px;
+      background-color: $lightBorderColor;
+      position: relative;
+
+      .bx-progress {
+        background: $accentColor;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 10%;
+        transition: width 0.3s ease-in-out;
+      }
+    }
+
+    .bx-arrows {
+      display: flex;
+      gap: 16px;
+
+      .bx-arrow {
+        width: 32px;
+
+        height: 32px;
+        background: $accentColor;
+        mask-image: url("~/assets/media/arrow-black.svg");
+        mask-position: center;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        cursor: pointer;
+
+        @media (max-width: $mobileBreakpoint) {
+          width: 28px;
+          height: 28px;
+        }
+
+        &.prev {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+section:not(.bx-full-width) {
+  max-width: $boxedWidth;
+  width: $relativeWidth;
+  margin: 26px auto;
+}
+
+
+// Animations
+:root {
+  --ease-out-slow: cubic-bezier(0, 0, 0.3, 1);
+  --animation-slide-in: .6s slideIn var(--ease-out-slow) forwards;
+  --animation-fade-in: fadeIn .6s var(--ease-out-slow);
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+
+  .scroll-trigger.animate--fade-in,
+  .scroll-trigger.animate--slide-in {
+    opacity: 0;
+  }
+
+  .scroll-trigger.animate--slide-in {
+    transform: translateY(2rem);
+  }
+
+  .scroll-trigger:not(.scroll-trigger--offscreen).animate--fade-in {
+    opacity: 1;
+    animation: var(--animation-fade-in);
+  }
+
+  .scroll-trigger:not(.scroll-trigger--offscreen).animate--slide-in {
+    animation: var(--animation-slide-in);
+    animation-delay: calc(var(--animation-order) * 75ms + .2s);
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(2rem);
+      opacity: 0.01;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0.01;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.scroll-trigger:not(.scroll-trigger--offscreen).scroll-trigger--cancel {
+  opacity: 1;
+  animation: none;
+  transition: none;
+  transform: none;
+}

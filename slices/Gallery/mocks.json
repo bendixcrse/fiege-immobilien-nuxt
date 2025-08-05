@@ -1,0 +1,51 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "apple",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Anim cupidatat aute sint ad consectetur deserunt esse cillum sunt duis irure non mollit reprehenderit est. Et voluptate minim ipsum."
+						}
+					}
+				]
+			},
+			"overline": {
+				"__TYPE__": "FieldContent",
+				"value": "different",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"media",
+						{
+							"key": "3c77dc0d-b2a7-4e57-a2ca-cefedd6e7519",
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "FileLink",
+								"id": "mock_Media_link",
+								"kind": "file",
+								"name": "mock_name",
+								"url": "https://source.unsplash.com/daily",
+								"size": "0"
+							}
+						}
+					]
+				]
+			}
+		]
+	}
+]

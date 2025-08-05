@@ -1,0 +1,49 @@
+{
+  "id": "seperator",
+  "type": "SharedSlice",
+  "name": "Seperator",
+  "description": "Seperator",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "top_space": {
+          "type": "Number",
+          "config": {
+            "label": "Top Space",
+            "placeholder": ""
+          }
+        },
+        "bottom_space": {
+          "type": "Number",
+          "config": {
+            "label": "Bottom Space",
+            "placeholder": ""
+          }
+        },
+        "show_line": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Line",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        },
+        "anchor_id": {
+          "type": "Text",
+          "config": {
+            "label": "Anchor Id",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"background_media": {
+				"key": "15f1776c-981d-4d7e-9846-ad3c92973ddc",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "FileLink",
+					"id": "mock_Media_link",
+					"kind": "file",
+					"name": "mock_name",
+					"url": "https://source.unsplash.com/daily",
+					"size": "0"
+				}
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "journey",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ut sint sit non occaecat sint qui pariatur amet amet. Et voluptate cillum aliqua duis est cupidatat est ex cillum nostrud nostrud consequat dolore ut nostrud."
+						}
+					}
+				]
+			},
+			"desktop_ratio": {
+				"__TYPE__": "FieldContent",
+				"value": "79",
+				"type": "Number"
+			},
+			"mobile_ratio": {
+				"__TYPE__": "FieldContent",
+				"value": "13",
+				"type": "Number"
+			},
+			"anchor_id": {
+				"__TYPE__": "FieldContent",
+				"value": "industrial",
+				"type": "Text"
+			},
+			"overline": {
+				"__TYPE__": "FieldContent",
+				"value": "nails",
+				"type": "Text"
+			},
+			"title_tag": {
+				"__TYPE__": "FieldContent",
+				"value": "h2",
+				"type": "Select"
+			},
+			"content_vertical_spacing": {
+				"__TYPE__": "FieldContent",
+				"value": "84",
+				"type": "Number"
+			},
+			"mobile_content_vertical_spacing": {
+				"__TYPE__": "FieldContent",
+				"value": "4",
+				"type": "Number"
+			},
+			"button": {
+				"__TYPE__": "LinkContent",
+				"key": "f80f7c8d-1eda-4bbe-aac3-0480715f71f5",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "brass"
+				}
+			}
+		},
+		"items": []
+	}
+]

@@ -1,0 +1,142 @@
+{
+  "format": "custom",
+  "id": "general_settings",
+  "label": "General Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "company": {
+        "type": "Text",
+        "config": {
+          "label": "Company",
+          "placeholder": ""
+        }
+      },
+      "address": {
+        "type": "Text",
+        "config": {
+          "label": "Address",
+          "placeholder": ""
+        }
+      },
+      "contact_email": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Email",
+          "placeholder": ""
+        }
+      },
+      "contact_telephone": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Telephone",
+          "placeholder": ""
+        }
+      },
+      "social_media_links": {
+        "type": "Group",
+        "config": {
+          "label": "Social Media Links",
+          "repeat": true,
+          "fields": {
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Name",
+                "placeholder": ""
+              }
+            },
+            "url": {
+              "type": "Link",
+              "config": {
+                "label": "URL",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "select": null
+              }
+            }
+          }
+        }
+      },
+      "legal_menu": {
+        "type": "Link",
+        "config": {
+          "label": "Legal Menu",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
+      "copyright": {
+        "type": "Text",
+        "config": {
+          "label": "Copyright",
+          "placeholder": ""
+        }
+      }
+    },
+    "Header": {
+      "cta_button": {
+        "type": "Link",
+        "config": {
+          "label": "CTA Button",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "menu_image": {
+        "type": "Image",
+        "config": {
+          "label": "Menu Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "menu": {
+        "type": "Group",
+        "config": {
+          "label": "Menu",
+          "repeat": true,
+          "fields": {
+            "parent_link": {
+              "type": "Link",
+              "config": {
+                "label": "Parent Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "sub_items": {
+              "type": "Link",
+              "config": {
+                "label": "Sub Items",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

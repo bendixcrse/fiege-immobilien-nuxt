@@ -1,0 +1,128 @@
+{
+  "id": "animated_numbers",
+  "type": "SharedSlice",
+  "name": "AnimatedNumbers",
+  "description": "AnimatedNumbers",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "numbers": {
+          "type": "Group",
+          "config": {
+            "label": "Numbers",
+            "repeat": true,
+            "fields": {
+              "number": {
+                "type": "Number",
+                "config": {
+                  "label": "Number",
+                  "placeholder": ""
+                }
+              },
+              "unit": {
+                "type": "Text",
+                "config": {
+                  "label": "Unit",
+                  "placeholder": ""
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "content_color": {
+          "type": "Color",
+          "config": {
+            "label": "Content Color",
+            "placeholder": ""
+          }
+        },
+        "background_color": {
+          "type": "Color",
+          "config": {
+            "label": "Background Color",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "animatedNumbersSplitRow",
+      "name": "Animated Numbers - Split Row",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "numbers": {
+          "type": "Group",
+          "config": {
+            "label": "Numbers",
+            "repeat": true,
+            "fields": {
+              "number": {
+                "type": "Number",
+                "config": {
+                  "label": "Number",
+                  "placeholder": ""
+                }
+              },
+              "unit": {
+                "type": "Text",
+                "config": {
+                  "label": "Unit",
+                  "placeholder": ""
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
