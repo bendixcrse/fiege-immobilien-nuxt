@@ -252,10 +252,8 @@ function submenuHasItems(subItems: any) {
             gap: 12px;
 
             .bx-contact-image {
-              img {
-                height: 58px;
-                width: 58px;
-              }
+              height: 58px;
+              width: 58px;
             }
 
             .bx-text {

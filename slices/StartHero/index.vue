@@ -80,6 +80,7 @@ onMounted(() => {
     height: 100%;
     z-index: 0;
     opacity: 0.6;
+    will-change: transform;
   }
 
   .bx-content-container {

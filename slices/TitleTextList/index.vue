@@ -18,36 +18,88 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    Placeholder component for title_text_list (variation: {{ slice.variation }})
-    slices.
+  <div class="bx-title-text-list-container">
+	<div v-for="(item, index) in slice.primary.items" class="bx-title-list-item animate--slide-in scroll-trigger" :key="index">
+		<div class="bx-title-container">
+			<div class="bx-index">{{ index < 9 ? '0' : '' }}{{ index + 1 }}</div>
+			<h2>{{ item.title }}</h2>
+		</div>
 
-    <br />
-    <strong>You can edit this slice directly in your code editor.</strong>
-    <!--
-	💡 Use Prismic MCP with your code editor
+		<div class="bx-content-container">
+			<PrismicRichText
+				:field="item.description"
+				wrapper="div"
+				class="bx-text"
+			/>
+			<Button
+				class="bx-button"
+				:link="item.button"
+			/>
+		</div>
+	</div>
+  </div>
+  </section>
+</template>
 
-	Get AI-powered help to build your slice components — based on your actual model.
+<style lang="scss" scoped>
+.bx-title-text-list-container {
+	display: flex;
+	flex-direction: column;
 
-	▶️ Setup:
-	1. Add a new MCP Server in your code editor:
+	.bx-title-list-item {
+		border-bottom: 1px solid $blackColor;
+		padding: 3rem;
+		display: flex;
+		justify-content: space-between;
 
-	{
-		"mcpServers": {
-			"Prismic MCP": {
-				"command": "npx",
-				"args": ["-y", "@prismicio/mcp-server@latest"]
+		@media(max-width: $mobileBreakpoint) {
+			padding: 3rem 0;
+			flex-direction: column;
+			gap: 28px;
+		}
+
+		.bx-title-container {
+			display: flex;
+			max-width: 500px;
+			flex: 1;
+			gap: 42px;
+
+			@media(max-width: $mobileBreakpoint) {
+				gap: 32px;
+			}
+			
+			h2 {
+				font-size: 3rem;
+				max-width: 300px;
+				margin: 0;
+				line-height: 1.2;
+				
+				@media(max-width: $mobileBreakpoint) {
+					font-size: 2rem;
+				}
+			}
+
+			.bx-index {
+				margin-top: 10px;
+			}
+		}
+
+		.bx-content-container {
+			max-width: 500px;
+
+			.bx-text {
+				font-size: 1.125rem;
+
+				:deep(p) {
+					margin: 0;
+				}
+			}
+
+			.bx-button {
+				display: inline-block;
+				margin-top: 2rem;
 			}
 		}
 	}
-
-	2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-
-	✅ Then open your slice file and ask your code editor:
-		"Code this slice"
-
-	Your code editor reads your slice model and helps you code faster ⚡
-	🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-	📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
--->
-  </section>
-</template>
+}
+</style>

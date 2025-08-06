@@ -51,10 +51,14 @@ const props = defineProps(["link", "contact_name", "contact_image"]);
     overflow: hidden;
     position: relative;
     line-height: 0;
+    height: 48px;
+    width: 48px;
+    overflow: hidden;
     
     img {
-      height: 48px;
-      width: 48px;
+      position: absolute;
+      height: 100%;
+      width: 100%;
       object-fit: cover;
       object-position: center;
     }
