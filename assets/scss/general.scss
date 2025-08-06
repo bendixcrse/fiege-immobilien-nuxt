@@ -27,12 +27,12 @@ body {
   }
 
   h2 {
-    font-size: 28px;
+			font-size: 3rem;
 
-    @media(max-width: $mobileBreakpoint) {
-      font-size: 24px;
-    }
-  }
+			@media(max-width: $mobileBreakpoint) {
+				font-size: 2rem;
+			}
+		}
 
   .bx-overline {
     text-transform: uppercase;
@@ -153,8 +153,19 @@ section:not(.bx-full-width) {
   max-width: $boxedWidth;
   width: $relativeWidth;
   margin: 26px auto;
-}
+  
+  &.bx-section-vertical-spacing-small {
+    padding: 2rem 0;
+  }
 
+  &.bx-section-vertical-spacing-normal {
+    padding: 5rem 0;
+  }
+
+  &.bx-section-vertical-spacing-large {
+    padding: 8rem 0;
+  }
+}
 
 // Animations
 :root {

@@ -63,11 +63,7 @@ const buttonText = computed(() => props.link.text ?? props.text ?? "");
 
   .bx-text {
     position: relative;
-    font-size: 18px;
-
-    @media (max-width: $mobileBreakpoint) {
-      // font-size: 16px;
-    }
+    font-size: 1.125em;
 
     &:after {
       content: "";

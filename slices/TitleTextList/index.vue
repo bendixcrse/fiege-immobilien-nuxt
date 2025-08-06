@@ -69,14 +69,9 @@ defineProps(
 			}
 			
 			h2 {
-				font-size: 3rem;
 				max-width: 300px;
 				margin: 0;
 				line-height: 1.2;
-				
-				@media(max-width: $mobileBreakpoint) {
-					font-size: 2rem;
-				}
 			}
 
 			.bx-index {

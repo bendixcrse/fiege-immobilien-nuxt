@@ -17,37 +17,82 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+	:class="'bx-section-vertical-spacing-' + slice.primary.vertical_spacing"
   >
-    Placeholder component for large_text (variation: {{ slice.variation }})
-    slices.
+	<div class="bx-large-text-container">
+		<div v-if="slice.primary.side_text" class="bx-side-text animate--slide-in scroll-trigger">
+			{{ slice.primary.side_text }}
+		</div>
 
-    <br />
-    <strong>You can edit this slice directly in your code editor.</strong>
-    <!--
-	💡 Use Prismic MCP with your code editor
+		<div class="bx-text-container animate--slide-in scroll-trigger">
+			<h2 class="bx-title">{{ slice.primary.title }}</h2>
+			<PrismicRichText
+				:field="slice.primary.description"
+				wrapper="div"
+				class="bx-text"
+			/>
+			<Button
+				class="bx-button"
+				:link="slice.primary.button"
+			/>
+		</div>
+	</div>
+  </section>
+</template>
 
-	Get AI-powered help to build your slice components — based on your actual model.
+<style lang="scss" scoped>
+.bx-large-text-container {
+	display: flex;
+	gap: 14%;
+	justify-content: space-between;
 
-	▶️ Setup:
-	1. Add a new MCP Server in your code editor:
+	@media(max-width: $mobileBreakpoint) {
+		flex-direction: column;
+	}
 
-	{
-		"mcpServers": {
-			"Prismic MCP": {
-				"command": "npx",
-				"args": ["-y", "@prismicio/mcp-server@latest"]
-			}
+	.bx-side-text {
+		white-space: nowrap;
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		margin: 1rem 0;
+		
+		@media(max-width: $mobileBreakpoint) {
+			margin: 0.5rem 0;
 		}
 	}
 
-	2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
+	.bx-text-container {
+		width: 75%;
 
-	✅ Then open your slice file and ask your code editor:
-		"Code this slice"
+		@media(max-width: $mobileBreakpoint) {
+			width: 100%;
+		}
 
-	Your code editor reads your slice model and helps you code faster ⚡
-	🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-	📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
--->
-  </section>
-</template>
+		h2 {
+			margin: 0;
+		}
+
+		.bx-text {
+			font-size: 2rem;
+			line-height: 1.3;
+			margin: 0.5em 0 1em;
+
+			@media(max-width: $mobileBreakpoint) {
+				font-size: 1.5rem;
+			}
+
+			:deep(p) {
+				margin: 0;
+			}
+		}
+
+		.bx-button {
+			font-size: 1.2em;
+			
+			@media(max-width: $mobileBreakpoint) {
+				font-size: 1em;
+			}
+		}
+	}
+}
+</style>
