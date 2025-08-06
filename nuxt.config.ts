@@ -78,7 +78,7 @@ export default defineNuxtConfig({
 
   schemaOrg: { identity: "Organization" },
 
-  googleFonts: { families: { 'Red Hat Display': [400, 500, 600, 700] }, download: false },
+  googleFonts: { families: { 'Red Hat Display': [300, 400, 500, 600, 700] }, download: false },
 
   gtag: {
     id: "G-QB72SEC3S0",

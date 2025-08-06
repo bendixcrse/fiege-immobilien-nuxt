@@ -18,6 +18,16 @@
 				"__TYPE__": "FieldContent",
 				"value": "period",
 				"type": "Text"
+			},
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#fe87cb",
+				"type": "Color"
+			},
+			"content_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#fe85e7",
+				"type": "Color"
 			}
 		},
 		"items": []

@@ -1288,6 +1288,26 @@ export interface QuotesSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   subtitle: prismic.KeyTextField;
+
+  /**
+   * Background Color field in *Quotes → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quotes.default.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/fields/color
+   */
+  background_color: prismic.ColorField;
+
+  /**
+   * Content Color field in *Quotes → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quotes.default.primary.content_color
+   * - **Documentation**: https://prismic.io/docs/fields/color
+   */
+  content_color: prismic.ColorField;
 }
 
 /**
