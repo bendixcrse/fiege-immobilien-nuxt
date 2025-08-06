@@ -120,6 +120,7 @@ async function scrollToTop() {
     width: 100%;
     background-color: transparent;
     --content-color: #{$whiteColor};
+  border-bottom: 1px solid rgba($lightGrey, 0.1);
   }
 
   &.transparent:not(.scrolled) {

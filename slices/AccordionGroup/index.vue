@@ -21,23 +21,27 @@ function closeAllAccordions(index: Number) {
 </script>
 
 <template>
-  <section class="bx-accordion-group-container" :data-slice-type="slice.slice_type"
-    :data-slice-variation="slice.variation">
-    <div class="bx-side-col">
-      <h3 v-html="slice.primary.sidetext" class="bx-side-title"></h3>
+  <section
+    class="bx-accordion-group-container"
+    :data-slice-type="slice.slice_type"
+    :data-slice-variation="slice.variation"
+  >
+    <div class="bx-title-row">
+      <h2>{{ slice.primary.title }}</h2>
+      <div class="bx-description">
+        <PrismicRichText wrapper="div" :field="slice.primary.description" />
+      </div>
     </div>
-    <div class="bx-col">
-      <div class="bx-title-row">
-        <h2>{{ slice.primary.title }}</h2>
-        <div class="bx-description">
-          <PrismicRichText wrapper="div" :field="slice.primary.description" />
-        </div>
-      </div>
 
-      <div class="bx-accordion-group">
-        <AccordionItem v-for="(item, index) in slice.items" :index="index" :title="item.title ?? '-'" ref="accordions"
-          @open="closeAllAccordions(index)" :content="item.content" />
-      </div>
+    <div class="bx-accordion-group">
+      <AccordionItem
+        v-for="(item, index) in slice.items"
+        :index="index"
+        :title="item.title ?? '-'"
+        ref="accordions"
+        @open="closeAllAccordions(index)"
+        :content="item.content"
+      />
     </div>
   </section>
 </template>
@@ -46,9 +50,9 @@ function closeAllAccordions(index: Number) {
 .bx-accordion-group-container {
   display: flex;
   margin: 64px auto 150px;
+  flex-direction: column;
 
-  @media(max-width: $mobileBreakpoint) {
-    flex-direction: column;
+  @media (max-width: $mobileBreakpoint) {
     margin-bottom: 50px;
   }
 
@@ -56,7 +60,7 @@ function closeAllAccordions(index: Number) {
     flex: 0 0 25%;
     width: 25%;
 
-    @media(max-width: $mobileBreakpoint) {
+    @media (max-width: $mobileBreakpoint) {
       flex: 1;
       width: 100%;
     }
@@ -74,7 +78,7 @@ function closeAllAccordions(index: Number) {
     gap: 14%;
     margin-bottom: 76px;
 
-    @media(max-width: $mobileBreakpoint) {
+    @media (max-width: $mobileBreakpoint) {
       flex-direction: column;
       gap: 12px;
       margin-bottom: 26px;
@@ -88,7 +92,7 @@ function closeAllAccordions(index: Number) {
       text-transform: none;
       line-height: 1.2;
 
-      @media(max-width: $mobileBreakpoint) {
+      @media (max-width: $mobileBreakpoint) {
         width: 90%;
         flex: 1;
         font-size: 46px;
@@ -100,8 +104,8 @@ function closeAllAccordions(index: Number) {
       font-weight: 300;
       font-size: 16px;
       line-height: 1.5;
-      
-      @media(max-width: $mobileBreakpoint) {
+
+      @media (max-width: $mobileBreakpoint) {
         font-size: 16px;
         width: 90%;
         margin-top: 12px;
