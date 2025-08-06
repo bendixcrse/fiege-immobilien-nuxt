@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   //     publicDir: '.amplify-hosting/static'
   //   }
   // },
+  
 
   css: ["~/assets/scss/general.scss"],
   vite: {
