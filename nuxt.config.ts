@@ -5,7 +5,11 @@ import { createClient } from "@prismicio/client";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   compatibilityDate: "2024-09-11",
-  ssr: false,
+  
+  ssr: true,
+  nitro: {
+    preset: 'static' 
+  },
 
   css: ["~/assets/scss/general.scss"],
   vite: {
