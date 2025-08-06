@@ -3,9 +3,9 @@ import { createClient } from "@prismicio/client";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: true,
+  devtools: { enabled: true },
   compatibilityDate: "2024-09-11",
-  
+  ssr: true,
 
   css: ["~/assets/scss/general.scss"],
   vite: {
