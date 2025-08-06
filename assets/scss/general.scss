@@ -28,6 +28,7 @@ body {
 
   h2 {
 			font-size: 3rem;
+      margin: 0.5rem 0;
 
 			@media(max-width: $mobileBreakpoint) {
 				font-size: 2rem;
@@ -155,11 +156,11 @@ section:not(.bx-full-width) {
   margin: 26px auto;
   
   &.bx-section-vertical-spacing-small {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
 
   &.bx-section-vertical-spacing-normal {
-    padding: 5rem 0;
+    padding: 3rem 0;
   }
 
   &.bx-section-vertical-spacing-large {

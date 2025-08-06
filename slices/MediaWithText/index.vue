@@ -9,7 +9,7 @@ defineProps(
     "index",
     "slices",
     "context",
-  ]),
+  ])
 );
 </script>
 
@@ -17,37 +17,83 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+    class="bx-section-vertical-spacing-normal"
   >
-    Placeholder component for media_with_text (variation: {{ slice.variation }})
-    slices.
-
-    <br />
-    <strong>You can edit this slice directly in your code editor.</strong>
-    <!--
-	💡 Use Prismic MCP with your code editor
-
-	Get AI-powered help to build your slice components — based on your actual model.
-
-	▶️ Setup:
-	1. Add a new MCP Server in your code editor:
-
-	{
-		"mcpServers": {
-			"Prismic MCP": {
-				"command": "npx",
-				"args": ["-y", "@prismicio/mcp-server@latest"]
-			}
-		}
-	}
-
-	2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-
-	✅ Then open your slice file and ask your code editor:
-		"Code this slice"
-
-	Your code editor reads your slice model and helps you code faster ⚡
-	🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-	📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
--->
+    <div
+      class="bx-media-with-text-container"
+      :class="{ reversed: !!slice.primary.reversed }"
+    >
+      <div class="col animate--slide-in scroll-trigger">
+        <MediaItem
+          v-if="!!slice.primary.image.url"
+          :prismic-media="slice.primary.image"
+          class="bx-media-container"
+          :ratio="1"
+        />
+        <div v-else class="bx-title-container">
+          <div class="bx-overline">{{ slice.primary.overline }}</div>
+          <h2>{{ slice.primary.title }}</h2>
+        </div>
+      </div>
+      <div class="col content animate--slide-in scroll-trigger" :style="{'--animation-order': 1}">
+        <div class="bx-centered">
+          <div v-if="!!slice.primary.image.url" class="bx-title-container">
+            <div class="bx-overline">{{ slice.primary.overline }}</div>
+            <h2>{{ slice.primary.title }}</h2>
+          </div>
+          <PrismicRichText
+            wrapper="div"
+            class="bx-text"
+            :field="slice.primary.description"
+          />
+          <Button :link="slice.primary.button"></Button>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.bx-media-with-text-container {
+  display: flex;
+  flex-direction: row;
+  gap: 6rem;
+  font-size: 1.125rem;
+
+  @media (max-width: $mobileBreakpoint) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &.reversed {
+    flex-direction: row-reverse;
+  }
+
+  .col {
+    flex: 1;
+    max-width: 50%;
+
+    @media (max-width: $mobileBreakpoint) {
+      max-width: 100%;
+    }
+
+	&.content {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+
+	  .bx-centerd {
+		margin: auto;
+	  }
+	}
+  }
+
+  .bx-text {
+    margin: 0 0 32px;
+
+	:deep(p) {
+		margin: 0;
+	}
+  }
+}
+</style>
