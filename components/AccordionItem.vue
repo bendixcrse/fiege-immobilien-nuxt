@@ -65,10 +65,10 @@ defineExpose({
 .bx-accordion-item-container {
   border-top: 1px solid $blackColor;
   border-bottom: 1px solid $blackColor;
-  padding: 26px 0;
+  padding: 18px 0;
 
   @media(max-width: $mobileBreakpoint) {
-    padding: 22px 0;
+    padding: 14px 0;
   }
 
   &.open {
@@ -86,7 +86,8 @@ defineExpose({
     overflow: hidden;
 
     .bx-richtext {
-      padding: 16px 0 0;
+      padding: 8px 0 0;
+      max-width: 1000px;
     }
 
     &:deep(h1,
@@ -96,12 +97,6 @@ defineExpose({
       h5) {
         text-transform: uppercase;
         margin-top: 48px;
-    }
-    
-    &:deep(ul, p) {
-      @media(max-width: $mobileBreakpoint) {
-        font-size: 16px;
-      }
     }
   }
 
@@ -122,21 +117,21 @@ defineExpose({
     }
 
     .bx-icon {
-      height: 36px;
-      width: 36px;
+      height: 22px;
+      width: 22px;
       position: relative;
       transition: all .3s ease-in-out;
 
       @media(max-width: $mobileBreakpoint) {
-        width: 26px;
-        height: 26px;
+        width: 20px;
+        height: 20px;
       }
 
       &:before,
       &:after {
         content: "";
         display: block;
-        height: 1px;
+        height: 2px;
         width: 100%;
         position: absolute;
         top: 50%;
