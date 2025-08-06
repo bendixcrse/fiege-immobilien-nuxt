@@ -6,12 +6,12 @@ export default defineNuxtConfig({
   devtools: true,
   compatibilityDate: "2024-09-11",
 
-  nitro: {
-    preset: 'static',
-    output: {
-      publicDir: '.amplify-hosting/static'
-    }
-  },
+  // nitro: {
+  //   preset: 'static',
+  //   output: {
+  //     publicDir: '.amplify-hosting/static'
+  //   }
+  // },
 
   css: ["~/assets/scss/general.scss"],
   vite: {
