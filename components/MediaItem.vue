@@ -27,8 +27,11 @@ defineProps({
     ></video>
     <PrismicImage
       v-else-if="prismicMedia"
-      :field="prismicMedia"
-      draggable="false" :imgixParams="{w: 1000, fit: 'max' }"
+      :field="{
+        dimensions: prismicMedia.dimensions ?? { width: prismicMedia.width, height: prismicMedia.height },
+        ...prismicMedia,
+      }"
+      draggable="false" :imgixParams="{w: 1500, fit: 'max' }"
     />
   </div>
 </template>

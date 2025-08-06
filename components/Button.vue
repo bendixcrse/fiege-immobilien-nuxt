@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps(["link", "text", "light"]);
-const buttonText = computed(() => props.link.text ?? props.text ?? "");
+const buttonText = computed(() => props.link?.text ?? props.text ?? "");
 </script>
 
 <template>

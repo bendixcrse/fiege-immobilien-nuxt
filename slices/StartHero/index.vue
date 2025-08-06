@@ -111,7 +111,7 @@ onMounted(() => {
       max-width: 800px;
       font-size: 1.2em;
       line-height: 1.25;
-      margin-bottom: 2em;
+      margin-bottom: 1em;
     }
   }
 }
