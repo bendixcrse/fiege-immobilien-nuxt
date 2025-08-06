@@ -1,53 +1,156 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client";
 
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
 defineProps(
   getSliceComponentProps<Content.SplitPageHeroSlice>([
     "slice",
     "index",
     "slices",
     "context",
-  ]),
+  ])
 );
+
+const sectionRef = ref(null);
+const percentageScrolled = ref(0);
+
+onMounted(() => {
+  handleScroll();
+  window.addEventListener("scroll", handleScroll, { passive: true });
+});
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+
+function handleScroll() {
+  if (!sectionRef.value) return;
+  let section: any = sectionRef.value;
+
+  let sectionScrolled = Math.abs(Math.min(section.getBoundingClientRect().top, 0));
+  let windowHeight = section.getBoundingClientRect().height;
+
+  let percentage = sectionScrolled / windowHeight;
+  percentage = Math.max(0, Math.min(percentage * 1.2, 1));
+
+  percentageScrolled.value = Math.round(percentage * 1000) / 1000;
+}
 </script>
 
 <template>
   <section
+    ref="sectionRef"
+    class="bx-split-page-hero-container"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+    :style="{ '--percentage-scrolled': `${percentageScrolled}` }"
   >
-    Placeholder component for split_page_hero (variation: {{ slice.variation }})
-    slices.
-
-    <br />
-    <strong>You can edit this slice directly in your code editor.</strong>
-    <!--
-	💡 Use Prismic MCP with your code editor
-
-	Get AI-powered help to build your slice components — based on your actual model.
-
-	▶️ Setup:
-	1. Add a new MCP Server in your code editor:
-
-	{
-		"mcpServers": {
-			"Prismic MCP": {
-				"command": "npx",
-				"args": ["-y", "@prismicio/mcp-server@latest"]
-			}
-		}
-	}
-
-	2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-
-	✅ Then open your slice file and ask your code editor:
-		"Code this slice"
-
-	Your code editor reads your slice model and helps you code faster ⚡
-	🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-	📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
--->
+    <div class="bx-col text">
+      <div class="bx-left-boxed">
+        <div class="bx-overline">{{ slice.primary.overline }}</div>
+        <h1>{{ slice.primary.title }}</h1>
+      </div>
+    </div>
+    <div class="bx-col media">
+      <div class="bx-media-wrapper">
+        <MediaItem :prismicMedia="slice.primary.image" :ratio="1" />
+      </div>
+    </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.bx-split-page-hero-container {
+  --content-width: min(90svw, #{$boxedWidth});
+  display: flex;
+  max-width: none;
+  width: 100%;
+  height: calc(100svh - 66px);
+  margin: 0;
+  align-items: flex-end;
+  position: relative;
+
+  @media (max-width: $mobileBreakpoint) {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    width: calc(var(--content-width) * var(--percentage-scrolled));
+    max-width: $boxedWidth;
+    height: 1px;
+    background: $borderColor;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .bx-col {
+    flex: 1;
+    width: 100%;
+
+    &.media {
+      height: 100%;
+
+      .bx-media-wrapper {
+        --boxed-space-right: calc((100svw - var(--content-width)) / 2);
+
+        position: relative;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: calc(var(--percentage-scrolled) * 3rem)
+          calc(var(--percentage-scrolled) * var(--boxed-space-right))
+          calc(var(--percentage-scrolled) * 3rem) calc(var(--percentage-scrolled) * 3rem);
+
+		  @media (max-width: $mobileBreakpoint) {
+			padding: calc(var(--percentage-scrolled) * var(--boxed-space-right));
+		  }
+
+        .bx-background-media {
+          height: 100%;
+
+          &:deep(img, video) {
+            will-change: transform;
+            transform: scale(calc(1 + var(--percentage-scrolled) * 0.1));
+			
+			@media (max-width: $mobileBreakpoint) {
+				transform: scale(calc(1 + var(--percentage-scrolled) * 0.3));
+			}
+          }
+        }
+      }
+    }
+
+    &.text {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+    padding-right: 38px;
+
+    @media (max-width: $mobileBreakpoint) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .bx-left-boxed {
+    width: $relativeWidth;
+    max-width: calc(50svw - ((100svw - #{$boxedWidth}) / 2));
+    margin-left: auto;
+    padding-bottom: 86px;
+
+    @media (max-width: $mobileBreakpoint) {
+      width: $relativeWidth;
+      max-width: none;
+      padding: 32px 0;
+      margin: auto;
+    }
+  }
+}
+</style>

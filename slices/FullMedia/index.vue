@@ -67,6 +67,10 @@ function handleScroll() {
     left: 0;
     width: 100%;
     height: 100%;
+
+    &:deep(img, video) {
+      transform: scale(calc(1 + var(--percentage-scrolled) * 0.3));
+    }
   }
 }
 </style>
