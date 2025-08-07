@@ -48,17 +48,6 @@ defineProps({
     padding-bottom: var(--media-ratio, 60%);
   }
 
-  // &:after {
-  //   content: "";
-  //   position: absolute;
-  //   height: 100%;
-  //   width: 100%;
-  //   left: 0px;
-  //   top: 0;
-  //   background: linear-gradient(rgba(33, 33, 37, 0), #212125 96%);
-  //   z-index: 1;
-  // }
-
   img,
   video {
     position: absolute;

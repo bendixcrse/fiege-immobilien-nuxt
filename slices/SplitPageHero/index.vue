@@ -29,7 +29,7 @@ function handleScroll() {
   let windowHeight = section.getBoundingClientRect().height;
 
   let percentage = sectionScrolled / windowHeight;
-  percentage = Math.max(0, Math.min(percentage * 1.2, 1));
+  percentage = Math.max(0, Math.min(percentage * 1.8, 1));
 
   percentageScrolled.value = Math.round(percentage * 1000) / 1000;
 }
@@ -103,20 +103,16 @@ function handleScroll() {
           calc(var(--percentage-scrolled) * var(--boxed-space-right))
           calc(var(--percentage-scrolled) * 3rem) calc(var(--percentage-scrolled) * 3rem);
 
-		  @media (max-width: $mobileBreakpoint) {
-			padding: calc(var(--percentage-scrolled) * var(--boxed-space-right));
-		  }
+        @media (max-width: $mobileBreakpoint) {
+          padding: calc(var(--percentage-scrolled) * var(--boxed-space-right));
+        }
 
         .bx-background-media {
           height: 100%;
 
           &:deep(img, video) {
             will-change: transform;
-            transform: scale(calc(1 + var(--percentage-scrolled) * 0.1));
-			
-			@media (max-width: $mobileBreakpoint) {
-				transform: scale(calc(1 + var(--percentage-scrolled) * 0.3));
-			}
+            transform: scale(calc(1 + var(--percentage-scrolled) * 0.3));
           }
         }
       }

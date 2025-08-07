@@ -42,7 +42,7 @@ defineProps(
   width: $relativeWidth;
 
   .bx-quote-icon {
-	background-color: var(--content-color, #fff);
+    background-color: var(--content-color, #fff);
     mask-image: url("~/assets/media/quote-icon-black.svg");
     mask-repeat: no-repeat;
     mask-size: contain;
@@ -51,23 +51,30 @@ defineProps(
     height: 28px;
     margin-bottom: 1rem;
 
-	@media(max-width: $mobileBreakpoint) {
-		height: 22px;
-	}
+    @media (max-width: $mobileBreakpoint) {
+      height: 22px;
+    }
   }
 
   .bx-quote-text {
     font-size: 2rem;
     font-weight: 300;
+    max-width: 760px;
+    margin: auto;
 
-	@media(max-width: $mobileBreakpoint) {
-	  font-size: 1.5rem;
-	}
+    @media (max-width: $mobileBreakpoint) {
+      font-size: 1.5rem;
+    }
   }
 
   .bx-quote-author {
-    font-size: 1.2rem;
-    opacity: 0.5;
+    font-size: 1rem;
+    font-weight: 300;
+
+    &:before {
+      content: "⸺";
+      margin-right: 0.8rem;
+    }
   }
 }
 </style>
