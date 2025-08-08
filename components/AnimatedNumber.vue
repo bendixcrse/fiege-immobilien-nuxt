@@ -96,6 +96,7 @@ onUnmounted(() => {
   .bx-name {
     font-size: 1.2rem;
     // font-weight: 300;
+    text-align: center;
   }
 }
 </style>
