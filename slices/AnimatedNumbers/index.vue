@@ -1,53 +1,104 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client";
 
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.AnimatedNumbersSlice>([
     "slice",
     "index",
     "slices",
     "context",
-  ]),
+  ])
 );
 </script>
 
 <template>
   <section
+    class="bx-animated-numbers-section"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+    :styles="{
+      '--background-color':
+        props.slice.variation == 'default'
+          ? props.slice.primary.background_color
+          : 'inherit',
+      '--text-color':
+        props.slice.variation == 'default'
+          ? props.slice.primary.content_color
+          : 'inherit',
+    }"
   >
-    Placeholder component for animated_numbers (variation:
-    {{ slice.variation }}) slices.
-
-    <br />
-    <strong>You can edit this slice directly in your code editor.</strong>
-    <!--
-	💡 Use Prismic MCP with your code editor
-
-	Get AI-powered help to build your slice components — based on your actual model.
-
-	▶️ Setup:
-	1. Add a new MCP Server in your code editor:
-
-	{
-		"mcpServers": {
-			"Prismic MCP": {
-				"command": "npx",
-				"args": ["-y", "@prismicio/mcp-server@latest"]
-			}
-		}
-	}
-
-	2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-
-	✅ Then open your slice file and ask your code editor:
-		"Code this slice"
-
-	Your code editor reads your slice model and helps you code faster ⚡
-	🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-	📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
--->
+    <div v-if="slice.variation == 'default'" class="bx-animated-numbers-row">
+      <AnimatedNumber
+        v-for="(item, index) in slice.primary.numbers"
+        :key="index"
+        :number="item.number as number"
+        :unit="item.unit as string"
+        :name="item.title as string"
+      >
+      </AnimatedNumber>
+    </div>
+    <div
+      v-else-if="slice.variation == 'animatedNumbersSplitRow'"
+      class="bx-animated-numbers-split-row"
+    >
+      <div class="bx-col">
+        <MediaItem v-if="slice.primary.image.url" :prismic-media="slice.primary.image" :ratio="1" />
+        <h2>{{ slice.primary.title }}</h2>
+        <PrismicRichText wrapper="div" :field="slice.primary.description" />
+      </div>
+      <div class="bx-col numbers">
+        <AnimatedNumber
+          v-for="(item, index) in slice.primary.numbers"
+          :key="index"
+          :number="item.number as number"
+          :unit="item.unit as string"
+          :name="item.title as string"
+        >
+        </AnimatedNumber>
+      </div>
+    </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.bx-animated-numbers-section {
+  background-color: var(--background-color, #{$backgroundColor});
+  color: var(--text-color, #{$fontColor});
+}
+
+.bx-animated-numbers-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rem 0;
+
+  @media(max-width: $mobileBreakpoint) {
+	flex-direction: column;
+  }
+}
+
+.bx-animated-numbers-split-row {
+  display: flex;
+  gap: 2rem;
+  padding: 4rem 0;
+  font-size: 1.2rem;
+  align-items: center;
+
+  @media(max-width: $mobileBreakpoint) {
+	flex-direction: column;
+  }
+
+  .bx-col {
+	flex: 1;
+	width: 100%;
+
+	&.numbers {
+	  display: flex;
+	  flex-direction: column;
+	  gap: 2rem;
+	}
+  }
+}
+</style>
