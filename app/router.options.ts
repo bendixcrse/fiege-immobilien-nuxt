@@ -1,4 +1,3 @@
-// app/router.options.ts
 export default {
   async scrollBehavior(to, from, savedPosition) {
     let offset = 70;
