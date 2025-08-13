@@ -276,7 +276,7 @@ function submenuHasItems(subItems: any) {
           font-weight: 600;
           transition: all 0.3s ease-in-out;
 
-          @media (min-width: $mobileBreakpoint) {
+          @media (max-width: $mobileBreakpoint) {
             font-size: 28px;
           }
 
