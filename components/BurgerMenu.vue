@@ -79,13 +79,53 @@ function submenuHasItems(subItems: any) {
 <style lang="scss" scoped>
 .burgerMenu-enter-active,
 .burgerMenu-leave-active {
-  transition: all 0.3s ease;
+  transition: all .5s ease-in-out;
 }
 
-.burgerMenu-enter-from,
+// Transition enter
+.burgerMenu-enter-from {
+  opacity: 0;
+
+  &.bx-burger-menu-container {
+    .bx-image-container {
+      clip-path: inset(0% 0% 100%);
+    }
+
+    .bx-menu-container {
+      clip-path: inset(100% 0% 0%);
+    }
+  }
+}
+
+// Transition Target
+.burgerMenu-enter-to,
+.burgerMenu-leave-from {
+  opacity: 1;
+
+  &.bx-burger-menu-container {
+    .bx-image-container {
+      clip-path: inset(0% 0% 0%);
+    }
+
+    .bx-menu-container {
+      clip-path: inset(0% 0% 0%);
+    }
+  }
+}
+
+// Transition leave
 .burgerMenu-leave-to {
   opacity: 0;
-  transform: scale(1.05);
+
+  &.bx-burger-menu-container {
+    .bx-image-container {
+      clip-path: inset(100% 0% 0%);
+    }
+
+    .bx-menu-container {
+      clip-path: inset(0% 0% 100%);
+    }
+  }
 }
 
 .bx-burger-menu-container {
@@ -95,9 +135,6 @@ function submenuHasItems(subItems: any) {
   height: 100%;
   width: 100%;
   display: flex;
-  backdrop-filter: blur(20px);
-  z-index: 99;
-  background-color: rgba(#060918, 0.95);
   z-index: 999;
   color: #fff;
 
@@ -117,6 +154,8 @@ function submenuHasItems(subItems: any) {
     flex: 0 0 50%;
     position: relative;
     height: 100%;
+    clip-path: inset(0% 0% 0%);
+    transition: clip-path .5s ease-in-out;
 
     @media (max-width: $mobileBreakpoint) {
       // flex: none;
@@ -143,6 +182,10 @@ function submenuHasItems(subItems: any) {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    backdrop-filter: blur(20px);
+    background-color: rgba(#060918, 0.95);
+    clip-path: inset(0% 0% 0%);
+    transition: clip-path .5s ease-in-out;
 
     .bx-centered {
       display: flex;
@@ -159,6 +202,7 @@ function submenuHasItems(subItems: any) {
         margin-bottom: auto;
         margin-top: 0;
         height: 100%;
+        gap: 4px;
       }
     }
 
@@ -167,17 +211,17 @@ function submenuHasItems(subItems: any) {
       font-size: 12px;
       margin-bottom: 6px;
       font-weight: 300;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
     }
-    
+
     .bx-contact-information-container {
       margin-top: 28px;
       padding-top: 28px;
       width: 100%;
-      
+
       @media (max-width: $mobileBreakpoint) {
         margin-top: auto;
-        margin-bottom: 56px;
+        margin-bottom: 48px;
       }
 
       .bx-overline {
@@ -231,6 +275,10 @@ function submenuHasItems(subItems: any) {
           font-size: 32px;
           font-weight: 600;
           transition: all 0.3s ease-in-out;
+
+          @media (min-width: $mobileBreakpoint) {
+            font-size: 28px;
+          }
 
           &.router-link-exact-active,
           &:hover {

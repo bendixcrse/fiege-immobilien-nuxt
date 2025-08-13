@@ -20,12 +20,13 @@ function handleScroll() {
   if (!sectionRef.value) return;
   let section: any = sectionRef.value;
 
-  let sectionBottom = section.getBoundingClientRect().bottom;
-  let windowHeight = window.innerHeight;
-  let sectionHeight = section.getBoundingClientRect().height;
+  let sectionBottom = section?.getBoundingClientRect()?.bottom ?? 0;
+  let windowHeight = window.innerHeight ?? 0;
+  let sectionHeight = section?.getBoundingClientRect()?.height ?? 0;
 
   let sectionInView = 1 - sectionBottom / (windowHeight + sectionHeight);
   sectionInView = Math.max(0, Math.min(sectionInView, 1));
+  if (isNaN(sectionInView)) sectionInView = 0;
 
   percentageScrolled.value = Math.round(sectionInView * 1000) / 1000;
 }
@@ -37,7 +38,7 @@ function handleScroll() {
     class="bx-full-media-container"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    :style="{ '--percentage-scrolled': `${percentageScrolled}` }"
+    :style="{ '--percentage-scrolled': `${percentageScrolled ?? 0}` }"
   >
     <MediaItem :prismicMedia="slice.primary.media" :ratio="0" />
   </section>
@@ -69,7 +70,7 @@ function handleScroll() {
     height: 100%;
 
     &:deep(img, video) {
-      transform: scale(calc(1 + var(--percentage-scrolled) * 0.3));
+      transform: scale(calc(1 + var(--percentage-scrolled, 0) * 0.3));
     }
   }
 }

@@ -55,7 +55,7 @@ async function scrollToTop() {
         @click="scrollToTop"
       >
         <PrismicImage v-if="settings?.data.logo.url" :field="settings?.data.logo"></PrismicImage>
-        <div class="bx-logo-text">{{ settings?.data.copyright }}</div>
+        <div class="bx-logo-text"><strong>Leif Fiege</strong><br />Immobilienmanagement</div>
       </div>
 
       <div
@@ -203,18 +203,22 @@ async function scrollToTop() {
     transition: filter 0.3s ease-in-out;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 
     .bx-logo-text {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.2rem;
       line-height: 1;
       transition: all 0.3s ease-in-out;
       transform: translate(0, 0);
       opacity: 1;
+      letter-spacing: -0.02rem;
+      
+      strong {
+        font-weight: 700;
+      }
 
       @media(max-width: $mobileBreakpoint) {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
     }
 

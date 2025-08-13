@@ -30,7 +30,8 @@ function handleScroll() {
 
   let percentage = sectionScrolled / windowHeight;
   percentage = Math.max(0, Math.min(percentage * 1.8, 1));
-
+  if (isNaN(percentage)) percentage = 0;
+  
   percentageScrolled.value = Math.round(percentage * 1000) / 1000;
 }
 </script>
@@ -41,7 +42,7 @@ function handleScroll() {
     class="bx-split-page-hero-container"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    :style="{ '--percentage-scrolled': `${percentageScrolled}` }"
+    :style="{ '--percentage-scrolled': `${percentageScrolled ?? 0}` }"
   >
     <div class="bx-col text">
       <div class="bx-left-boxed">
@@ -77,7 +78,7 @@ function handleScroll() {
     content: "";
     position: absolute;
     bottom: -2px;
-    width: calc(var(--content-width) * var(--percentage-scrolled));
+    width: calc(var(--content-width) * var(--percentage-scrolled, 0));
     max-width: $boxedWidth;
     height: 1px;
     background: $borderColor;
@@ -99,12 +100,12 @@ function handleScroll() {
         height: 100%;
         width: 100%;
         box-sizing: border-box;
-        padding: calc(var(--percentage-scrolled) * 3rem)
-          calc(var(--percentage-scrolled) * var(--boxed-space-right))
-          calc(var(--percentage-scrolled) * 3rem) calc(var(--percentage-scrolled) * 3rem);
+        padding: calc(var(--percentage-scrolled, 0) * 3rem)
+          calc(var(--percentage-scrolled, 0) * var(--boxed-space-right))
+          calc(var(--percentage-scrolled, 0) * 3rem) calc(var(--percentage-scrolled, 0) * 3rem);
 
         @media (max-width: $mobileBreakpoint) {
-          padding: calc(var(--percentage-scrolled) * var(--boxed-space-right));
+          padding: calc(var(--percentage-scrolled, 0) * var(--boxed-space-right));
         }
 
         .bx-background-media {

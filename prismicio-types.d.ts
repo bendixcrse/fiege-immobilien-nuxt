@@ -289,6 +289,7 @@ export type GeneralSettingsDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | LogoIntroSlice
   | TitleTextListSlice
   | TeamSlice
   | SplitPageHeroSlice
@@ -969,6 +970,51 @@ type LargeTextSliceVariation = LargeTextSliceDefault;
 export type LargeTextSlice = prismic.SharedSlice<
   "large_text",
   LargeTextSliceVariation
+>;
+
+/**
+ * Primary content in *LogoIntro → Default → Primary*
+ */
+export interface LogoIntroSliceDefaultPrimary {
+  /**
+   * Logo field in *LogoIntro → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_intro.default.primary.logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for LogoIntro Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type LogoIntroSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LogoIntroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *LogoIntro*
+ */
+type LogoIntroSliceVariation = LogoIntroSliceDefault;
+
+/**
+ * LogoIntro Shared Slice
+ *
+ * - **API ID**: `logo_intro`
+ * - **Description**: LogoIntro
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type LogoIntroSlice = prismic.SharedSlice<
+  "logo_intro",
+  LogoIntroSliceVariation
 >;
 
 /**
@@ -1792,6 +1838,10 @@ declare module "@prismicio/client" {
       LargeTextSliceDefaultPrimary,
       LargeTextSliceVariation,
       LargeTextSliceDefault,
+      LogoIntroSlice,
+      LogoIntroSliceDefaultPrimary,
+      LogoIntroSliceVariation,
+      LogoIntroSliceDefault,
       LogosSlice,
       LogosSliceDefaultItem,
       LogosSliceVariation,

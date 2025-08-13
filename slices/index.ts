@@ -14,6 +14,7 @@ export const components = defineSliceZoneComponents({
   gallery: defineAsyncComponent(() => import("./Gallery/index.vue")),
   image_cards: defineAsyncComponent(() => import("./ImageCards/index.vue")),
   large_text: defineAsyncComponent(() => import("./LargeText/index.vue")),
+  logo_intro: defineAsyncComponent(() => import("./LogoIntro/index.vue")),
   logos: defineAsyncComponent(() => import("./Logos/index.vue")),
   media_with_text: defineAsyncComponent(
     () => import("./MediaWithText/index.vue"),
