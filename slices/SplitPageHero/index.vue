@@ -31,7 +31,7 @@ function handleScroll() {
   let percentage = sectionScrolled / windowHeight;
   percentage = Math.max(0, Math.min(percentage * 1.8, 1));
   if (isNaN(percentage)) percentage = 0;
-  
+
   percentageScrolled.value = Math.round(percentage * 1000) / 1000;
 }
 </script>
@@ -132,7 +132,7 @@ function handleScroll() {
     padding-right: 38px;
 
     @media (max-width: $mobileBreakpoint) {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
   }
 
