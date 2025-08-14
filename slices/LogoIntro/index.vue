@@ -39,7 +39,11 @@ function finishAnimation() {
     @click="finishAnimation"
   >
     <div class="bx-logo-container">
-      <PrismicImage :field="slice.primary.logo" class="bx-logo" />
+      <div
+        class="bx-logo"
+        v-if="slice.primary.logo?.url"
+        :style="{ '--logo-url': `url(${slice.primary.logo.url})` }"
+      ></div>
     </div>
   </section>
 </template>
@@ -55,6 +59,7 @@ function finishAnimation() {
   margin: 0;
   min-height: 100svh;
   --logo-scale: 1;
+  --logo-color: #{$brandColor};
   max-width: none;
 
   &.logo-done {
@@ -67,18 +72,17 @@ function finishAnimation() {
   &.finish {
     pointer-events: none;
     --logo-scale: 2;
+    --logo-color: #{$whiteColor};
 
     @media (max-width: $mobileBreakpoint) {
       --logo-scale: 1.5;
     }
 
     &::before {
-      width: 0;
       opacity: 0;
     }
 
     .bx-logo-container {
-      filter: invert(1);
       opacity: 0;
     }
   }
@@ -94,8 +98,7 @@ function finishAnimation() {
     background-color: rgba($backgroundColor, 1);
     opacity: 1;
     backdrop-filter: blur(15px);
-    transition: width 1.3s cubic-bezier(0.45, 0.42, 0.1, 1.01),
-      opacity 0.3s 0.3s ease-in-out;
+    transition: opacity .5s ease-in-out;
   }
 
   @keyframes fadeIn {
@@ -129,9 +132,16 @@ function finishAnimation() {
       max-width: 86px;
     }
 
-    img {
+    .bx-logo {
       width: 100%;
-      height: auto;
+      height: 86px;
+      background-color: var(--logo-color);
+      mask-image: var(--logo-url);
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      transition: all 0.3s ease-in-out;
+      user-select: none;
     }
   }
 }

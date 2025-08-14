@@ -188,7 +188,7 @@ function submenuHasItems(subItems: any) {
     transition: clip-path .5s ease-in-out;
 
     .bx-centered {
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
       gap: 8px;
       align-items: flex-start;
@@ -201,8 +201,9 @@ function submenuHasItems(subItems: any) {
         padding: 96px 0 0px 0;
         margin-bottom: auto;
         margin-top: 0;
-        height: 100%;
+        height: auto;
         gap: 4px;
+        flex: 1;
       }
     }
 

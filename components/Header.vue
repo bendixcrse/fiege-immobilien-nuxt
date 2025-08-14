@@ -54,8 +54,14 @@ async function scrollToTop() {
         :style="{ '--animation-order': 2 }"
         @click="scrollToTop"
       >
-        <PrismicImage v-if="settings?.data.logo.url" :field="settings?.data.logo"></PrismicImage>
-        <div class="bx-logo-text"><strong>Leif Fiege</strong><br />Immobilienmanagement</div>
+        <div
+          class="bx-logo-icon"
+          v-if="settings?.data.logo.url"
+          :style="{ '--logo-url': `url(${settings?.data.logo.url})` }"
+        ></div>
+        <div class="bx-logo-text">
+          <strong>Leif Fiege</strong><br />Immobilienmanagement
+        </div>
       </div>
 
       <div
@@ -106,8 +112,9 @@ async function scrollToTop() {
   z-index: 9999;
   transition: background-color 0.3s ease-in-out;
   background-color: $backgroundColor;
-  --content-color: #{$darkBackgroundColor};
   border-bottom: 1px solid $lightGrey;
+  --content-color: #{$brandColor};
+  --logo-color: #{$brandColor};
 
   @media (max-width: $mobileBreakpoint) {
     padding: 6px 0;
@@ -120,18 +127,30 @@ async function scrollToTop() {
     width: 100%;
     background-color: transparent;
     --content-color: #{$whiteColor};
-  border-bottom: 1px solid rgba($lightGrey, 0.1);
-  }
+    border-bottom: 1px solid rgba($lightGrey, 0.1);
 
-  &.transparent:not(.scrolled) {
-    .bx-logo-container {
-      filter: invert(1);
+    &:not(.scrolled, .menu-open) {
+      .bx-logo-container .bx-logo-text {
+        color: $whiteColor;
+      }
+    }
+
+    // Mobile Menu Open / Transparent
+    &:not(.scrolled).menu-open {
+      @media (max-width: $mobileBreakpoint) {
+        --logo-color: #{$whiteColor};
+
+        .bx-logo-container .bx-logo-text,
+        .bx-logo-container .bx-logo-text strong {
+          color: $whiteColor;
+        }
+      }
     }
   }
 
   &.scrolled {
     background-color: $backgroundColor;
-    --content-color: #{$darkBackgroundColor};
+    --content-color: #{$brandColor};
 
     .bx-logo-container {
       .bx-logo-text {
@@ -139,7 +158,7 @@ async function scrollToTop() {
         opacity: 0;
       }
 
-      :deep(img) {
+      .bx-logo-icon {
         width: 36px;
       }
     }
@@ -199,8 +218,6 @@ async function scrollToTop() {
   .bx-logo-container {
     cursor: pointer;
     user-select: none;
-    filter: invert(0);
-    transition: filter 0.3s ease-in-out;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -212,13 +229,16 @@ async function scrollToTop() {
       transform: translate(0, 0);
       opacity: 1;
       letter-spacing: -0.02rem;
-      
+      color: #555b77;
+
       strong {
         font-weight: 700;
+        color: #1b2c77;
+        transition: all 0.3s ease-in-out;
       }
 
-      @media(max-width: $mobileBreakpoint) {
-        font-size: 1rem;
+      @media (max-width: $mobileBreakpoint) {
+        font-size: 1.1rem;
       }
     }
 
@@ -226,12 +246,22 @@ async function scrollToTop() {
       display: inline-block;
     }
 
-    :deep(img) {
+    .bx-logo-icon {
+      width: 42px;
+      height: 42px;
+      background-color: var(--logo-color);
+      mask-image: var(--logo-url);
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      transition: all 0.3s ease-in-out;
       user-select: none;
       cursor: pointer;
-      width: 42px;
-      transition: width 0.3s ease-in-out;
-      height: auto;
+
+      @media (max-width: $mobileBreakpoint) {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 

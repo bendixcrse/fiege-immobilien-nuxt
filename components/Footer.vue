@@ -7,11 +7,21 @@ const localePath = useLocalePath();
 <template>
   <div class="bx-footer-container">
     <div class="bx-boxed">
-      <PrismicImage class="bx-logo" v-if="settings?.data.logo.url" :field="settings?.data.logo"></PrismicImage>
+      <div
+        class="bx-logo"
+        v-if="settings?.data.logo?.url"
+        :style="{ '--logo-url': `url(${settings?.data.logo.url})` }"
+      ></div>
 
-      <div class="bx-company animate--slide-in scroll-trigger" data-cascade>
-        {{ settings?.data.company }}
+      <div class="bx-logo-container animate--slide-in scroll-trigger">
+        <div class="bx-logo-icon" v-if="settings?.data.logo.url" :style="{'--logo-url': `url(${settings?.data.logo.url})`}"></div>
+        <div class="bx-logo-text"><strong>Leif Fiege</strong><br>Immobilienmanagement</div>
       </div>
+
+      <!-- <div class="bx-company animate--slide-in scroll-trigger" data-cascade>
+        {{ settings?.data.company }}
+      </div> -->
+
       <div class="bx-address animate--slide-in scroll-trigger" data-cascade>
         {{ settings?.data.address }}
       </div>
@@ -79,10 +89,50 @@ const localePath = useLocalePath();
     padding: 28px 0;
   }
 
-  .bx-logo {
-    width: auto;
-    height: 38px;
-    margin-bottom: 32px;
+  .bx-logo-container {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 32px;
+
+    .bx-logo-text {
+      font-size: 1.2rem;
+      line-height: 1;
+      transition: all 0.3s ease-in-out;
+      transform: translate(0, 0);
+      opacity: 1;
+      letter-spacing: -0.02rem;
+      color: #555b77;
+      
+      strong {
+        font-weight: 700;
+        color: #1b2c77;
+      }
+    }
+
+    a {
+      display: inline-block;
+    }
+
+    .bx-logo-icon {
+      width: 42px;
+      height: 42px;
+      background-color: $brandColor;
+      mask-image: var(--logo-url);
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      transition: all 0.3s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+
+      // @media (max-width: $mobileBreakpoint) {
+      //   width: 36px;
+      //   height: 36px;
+      // }
+    }
   }
 
   .bx-company {
@@ -100,7 +150,7 @@ const localePath = useLocalePath();
   .bx-address {
     font-size: 16px;
     text-transform: uppercase;
-    
+
     @media (max-width: $mobileBreakpoint) {
       font-size: 14px;
     }
