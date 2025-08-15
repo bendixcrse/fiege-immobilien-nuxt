@@ -12,12 +12,8 @@ cmds = [
 
   # nvm laden und Node 23 aktivieren (alles in EINEM Step)
   "export NVM_DIR=\"$HOME/.nvm\" && . \"$NVM_DIR/nvm.sh\" && nvm install 23 && nvm use 23 && node -v && npm -v",
-
-  # (optional) pnpm via Corepack aktivieren und installieren
-  "export NVM_DIR=\"$HOME/.nvm\" && . \"$NVM_DIR/nvm.sh\" && npm install -g corepack && corepack enable && corepack prepare pnpm@9 --activate",
-
-  # Dependencies installieren (pnpm)
-  "export NVM_DIR=\"$HOME/.nvm\" && . \"$NVM_DIR/nvm.sh\" && pnpm i --frozen-lockfile"
+  
+  "export NVM_DIR=\"$HOME/.nvm\" && . \"$NVM_DIR/nvm.sh\" && npm ci"
 ]
 
 [phases.build]
