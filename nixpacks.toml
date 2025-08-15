@@ -22,5 +22,5 @@ cmds = [
   "export NVM_DIR=\"$HOME/.nvm\" && . \"$NVM_DIR/nvm.sh\" && node -v",
 
   # Build/Generate laufen lassen (Nuxt, Next, etc.)
-  "export NVM_DIR=\"$HOME/.nvm\" && . \"$NVM_DIR/nvm.sh\" && pnpm run generate"
+  "export NVM_DIR=\"$HOME/.nvm\" && . \"$NVM_DIR/nvm.sh\" && npm run generate"
 ]
