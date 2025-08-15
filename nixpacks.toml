@@ -8,8 +8,9 @@ NIXPACKS_NODE_VERSION = "23"   # (oder "23", wenn deine Nixpacks-Version das sch
 [phases.install]
 # Corepack + pnpm sicherstellen und Dependencies installieren
 cmds = [
-  "npm install -g n",
-  "n 23.2.0",
+  "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash",
+  ". ~/.nvm/nvm.sh",
+  "nvm install 23",
   "node -v",
   "pnpm i --frozen-lockfile"
 ]
