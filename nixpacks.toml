@@ -8,9 +8,9 @@ NIXPACKS_NODE_VERSION = "23"   # (oder "23", wenn deine Nixpacks-Version das sch
 [phases.install]
 # Corepack + pnpm sicherstellen und Dependencies installieren
 cmds = [
-  "npm install -g corepack",
-  "corepack enable",
-  "corepack prepare pnpm@9 --activate",
+  "npm install -g n",
+  "n 23.2.0",
+  "node -v",
   "pnpm i --frozen-lockfile"
 ]
 
