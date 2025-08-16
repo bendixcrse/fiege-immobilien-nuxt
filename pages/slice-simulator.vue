@@ -10,6 +10,7 @@ definePageMeta({
 <template>
   <SliceSimulator v-slot="{ slices }">
     <SliceZone
+      wrapper="div" class="bx-slice-zone"
       :slices="slices"
       :components="components"
     />

@@ -3,7 +3,9 @@
       <Header />
       <BurgerMenu />
 
-      <slot />
+      <main>
+        <slot />
+      </main>
       
       <Footer />
     </div>

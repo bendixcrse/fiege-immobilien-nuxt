@@ -37,7 +37,7 @@ useHead({
       <h1>{{ prismic.asText(page?.data?.title) }}</h1>
       <PrismicRichText wrapper="div" class="bx-page-description-container" :field="page?.data?.description" />
     </div>
-    <SliceZone v-else wrapper="main" :slices="page?.data?.slices ?? []" :components="components" />
+    <SliceZone v-else wrapper="div" class="bx-slice-zone" :slices="page?.data?.slices ?? []" :components="components" />
   </div>
 </template>
 
