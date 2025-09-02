@@ -54,6 +54,20 @@
 									"__TYPE__": "ImageContent",
 									"thumbnails": {}
 								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Proident nulla esse duis adipisicing officia adipisicing reprehenderit sunt deserunt nostrud labore occaecat et cupidatat."
+											}
+										}
+									]
+								}
 							]
 						]
 					}

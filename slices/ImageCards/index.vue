@@ -27,6 +27,7 @@ defineProps(
 		</div>
 		<div class="bx-col">
 			<h2>{{ item.title }}</h2>
+			<PrismicRichText :field="item.description" wrapper="div" />
 			<Button :link="item.button"></Button>
 		</div>
 	</div>

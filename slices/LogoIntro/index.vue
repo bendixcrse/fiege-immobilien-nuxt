@@ -15,8 +15,8 @@ onMounted(() => {
 
     setTimeout(() => {
       finishAnimation();
-    }, 1000);
-  }, 1600);
+    }, 300);
+  }, 600);
 });
 
 function finishAnimation() {
@@ -25,7 +25,7 @@ function finishAnimation() {
 
   setTimeout(() => {
     introAnimation.value = false;
-  }, 2500);
+  }, 1000);
 }
 </script>
 
@@ -38,13 +38,14 @@ function finishAnimation() {
     :class="{ 'logo-done': logoAnimation, finish: finishedAnimation }"
     @click="finishAnimation"
   >
-    <div class="bx-logo-container">
+    <!-- <div class="bx-logo-container">
       <div
         class="bx-logo"
         v-if="slice.primary.logo?.url"
         :style="{ '--logo-url': `url(${slice.primary.logo.url})` }"
       ></div>
-    </div>
+    </div> -->
+    <div class="bx-text-logo"><strong>Leif Fiege</strong> Immobilienmanagement</div>
   </section>
 </template>
 
@@ -67,6 +68,17 @@ function finishAnimation() {
       animation: none;
       opacity: 1;
     }
+
+    .bx-text-logo {
+      @media (min-width: $mobileBreakpoint) {
+        font-size: 1.2rem;
+        top: 30px;
+      }
+
+      @media (max-width: $mobileBreakpoint) {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
   }
 
   &.finish {
@@ -80,6 +92,12 @@ function finishAnimation() {
 
     &::before {
       opacity: 0;
+    }
+
+    .bx-text-logo {
+      @media (max-width: $mobileBreakpoint) {
+        opacity: 0;
+      }
     }
 
     .bx-logo-container {
@@ -97,8 +115,8 @@ function finishAnimation() {
     height: 100%;
     background-color: rgba($backgroundColor, 1);
     opacity: 1;
-    backdrop-filter: blur(15px);
-    transition: opacity .5s ease-in-out;
+    // backdrop-filter: blur(15px);
+    transition: opacity 0.5s ease-in-out;
   }
 
   @keyframes fadeIn {
@@ -113,6 +131,27 @@ function finishAnimation() {
     100% {
       opacity: 1;
       transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+
+  .bx-text-logo {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    color: $brandColor;
+    font-size: 1.5rem;
+    line-height: 1;
+    letter-spacing: -0.02rem;
+    transition: all .6s ease-in-out;
+
+    @media (max-width: $mobileBreakpoint) {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
     }
   }
 

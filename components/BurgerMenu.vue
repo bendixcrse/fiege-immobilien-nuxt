@@ -79,7 +79,7 @@ function submenuHasItems(subItems: any) {
 <style lang="scss" scoped>
 .burgerMenu-enter-active,
 .burgerMenu-leave-active {
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 // Transition enter
@@ -155,7 +155,7 @@ function submenuHasItems(subItems: any) {
     position: relative;
     height: 100%;
     clip-path: inset(0% 0% 0%);
-    transition: clip-path .5s ease-in-out;
+    transition: clip-path 0.5s ease-in-out;
 
     @media (max-width: $mobileBreakpoint) {
       // flex: none;
@@ -183,9 +183,9 @@ function submenuHasItems(subItems: any) {
     flex-direction: column;
     overflow-y: scroll;
     backdrop-filter: blur(20px);
-    background-color: rgba(#060918, 0.95);
+    background-color: rgba($brandColor, 0.95);
     clip-path: inset(0% 0% 0%);
-    transition: clip-path .5s ease-in-out;
+    transition: clip-path 0.5s ease-in-out;
 
     .bx-centered {
       display: inline-flex;
@@ -202,13 +202,13 @@ function submenuHasItems(subItems: any) {
         margin-bottom: auto;
         margin-top: 0;
         height: auto;
-        gap: 4px;
+        gap: 6px;
         flex: 1;
       }
     }
 
     .bx-overline {
-      color: $secondaryColor;
+      color: rgba($whiteColor, 0.6);
       font-size: 12px;
       margin-bottom: 6px;
       font-weight: 300;
@@ -244,7 +244,7 @@ function submenuHasItems(subItems: any) {
             display: block;
             width: 24px;
             height: 24px;
-            background-color: $secondaryColor;
+            background-color: rgba($whiteColor, 0.6);
             mask-size: contain;
             mask-repeat: no-repeat;
             mask-position: center;
@@ -283,7 +283,7 @@ function submenuHasItems(subItems: any) {
 
           &.router-link-exact-active,
           &:hover {
-            color: $secondaryColor;
+            // color: $secondaryColor;
           }
         }
       }

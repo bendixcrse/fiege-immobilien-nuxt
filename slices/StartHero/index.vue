@@ -93,6 +93,10 @@ onMounted(() => {
     height: 100%;
     padding-bottom: 8em;
     box-sizing: border-box;
+    
+    @media (max-width: $mobileBreakpoint) {
+      padding-bottom: 4em;
+    }
 
     .bx-overline {
       font-size: 1em;

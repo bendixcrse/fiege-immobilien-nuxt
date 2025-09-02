@@ -35,7 +35,10 @@ defineProps(
           <h2>{{ slice.primary.title }}</h2>
         </div>
       </div>
-      <div class="col content animate--slide-in scroll-trigger" :style="{'--animation-order': 1}">
+      <div
+        class="col content animate--slide-in scroll-trigger"
+        :style="{ '--animation-order': 1 }"
+      >
         <div class="bx-centered">
           <div v-if="!!slice.primary.image.url" class="bx-title-container">
             <div class="bx-overline">{{ slice.primary.overline }}</div>
@@ -69,6 +72,10 @@ defineProps(
     flex-direction: row-reverse;
   }
 
+  .bx-title-container {
+    margin-bottom: 24px;
+  }
+
   .col {
     flex: 1;
     max-width: 50%;
@@ -77,23 +84,23 @@ defineProps(
       max-width: 100%;
     }
 
-	&.content {
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
+    &.content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-	  .bx-centerd {
-		margin: auto;
-	  }
-	}
+      .bx-centerd {
+        margin: auto;
+      }
+    }
   }
 
   .bx-text {
     margin: 0 0 32px;
 
-	:deep(p) {
-		margin: 0;
-	}
+    :deep(p) {
+      margin: 0;
+    }
   }
 }
 </style>

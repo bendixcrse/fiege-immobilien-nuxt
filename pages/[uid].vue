@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { components } from '~/slices'
-const transparentHeader = useState('transparent_header')
+const transparentHeader = useState('transparent_header');
+const introAnimation = useLogoAnimation();
 
 const { localeProperties } = useI18n()
 const prismic = usePrismic()
@@ -29,6 +30,12 @@ useSeoMeta({
 useHead({
   titleTemplate: '%s'
 })
+
+onMounted(() => {
+  setTimeout(() => {
+    introAnimation.value = false;
+  }, 2000);
+})
 </script>
 
 <template>
@@ -48,7 +55,7 @@ useHead({
   margin: 100px auto;
 
   h1 {
-    font-size: 26px;
+    font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 46px;
@@ -56,6 +63,11 @@ useHead({
 
   .bx-page-description-container {
     max-width: 1000px;
+    padding-bottom: 4px;
+
+    :deep(h2) {
+      font-size: 1.6rem;
+    }
   }
 }
 </style>

@@ -831,6 +831,16 @@ export interface ImageCardsSliceDefaultPrimaryItemsItem {
   title: prismic.KeyTextField;
 
   /**
+   * Description field in *ImageCards → Default → Primary → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_cards.default.primary.items[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
    * Button field in *ImageCards → Default → Primary → Items*
    *
    * - **Field Type**: Link

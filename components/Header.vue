@@ -7,6 +7,7 @@ const alternateLanguages = useAlternateLanguages();
 const localePath = useLocalePath();
 const isScrolled = useState("scrolled_header", () => false);
 const router = useRouter();
+const showTextLogo = ref(false);
 
 const header = reactive({ isHome: true });
 
@@ -21,6 +22,10 @@ onMounted(() => {
   });
 
   if (router.currentRoute.value.hash) isScrolled.value = true;
+
+  setTimeout(() => {
+    showTextLogo.value = true
+  }, 1200)
 });
 
 watch(
@@ -32,7 +37,7 @@ watch(
   { deep: true, immediate: true }
 );
 
-async function scrollToTop() {
+async function navigateHome() {
   await router.push(localePath({ path: "/" }));
   window.scrollTo({ top: 0, behavior: "smooth" });
   burgerMenu.value = false;
@@ -43,8 +48,8 @@ async function scrollToTop() {
   <div
     class="bx-header-container"
     :class="{
-      transparent: transparentHeader,
-      scrolled: isScrolled && settings?.data.logo.url,
+      transparent: transparentHeader || burgerMenu,
+      scrolled: isScrolled && settings?.data.logo.url && !burgerMenu,
       'menu-open': burgerMenu,
     }"
   >
@@ -52,21 +57,20 @@ async function scrollToTop() {
       <div
         class="bx-logo-container animate--slide-in scroll-trigger"
         :style="{ '--animation-order': 2 }"
-        @click="scrollToTop"
+        @click="navigateHome"
       >
         <div
           class="bx-logo-icon"
           v-if="settings?.data.logo.url"
           :style="{ '--logo-url': `url(${settings?.data.logo.url})` }"
         ></div>
-        <div class="bx-logo-text">
-          <strong>Leif Fiege</strong><br />Immobilienmanagement
-        </div>
       </div>
 
+      <div class="bx-logo-text" :class="{'show-logo': showTextLogo}" @click="navigateHome"><strong>Leif Fiege</strong> Immobilienmanagement</div>
+
       <div
-        class="bx-menu-col animate--slide-in scroll-trigger"
-        :style="{ '--animation-order': 1 }"
+        class="bx-actions-col animate--slide-in scroll-trigger"
+        :style="{ '--animation-order': 3 }"
       >
         <nav v-if="alternateLanguages.length > 0" class="bx-languages-container">
           <div class="bx-language-icon"></div>
@@ -78,19 +82,14 @@ async function scrollToTop() {
             </li>
           </ul>
         </nav>
-      </div>
 
-      <div
-        class="bx-actions-col animate--slide-in scroll-trigger"
-        :style="{ '--animation-order': 3 }"
-      >
-        <ContactButton
+        <!-- <ContactButton
           class="bx-contact-button"
-          v-if="settings?.data.cta_button"
+          v-if="settings?.data.cta_button && settings?.data.cta_button.link_type != 'Any'"
           :link="settings?.data.cta_button"
           :contact_name="settings?.data.contact_name"
           :contact_image="settings?.data.menu_image?.url"
-        ></ContactButton>
+        ></ContactButton> -->
 
         <div @click="toggleMenu" :class="{ close: burgerMenu }" class="bx-menu-button">
           <span class="top"></span>
@@ -105,7 +104,8 @@ async function scrollToTop() {
 
 <style lang="scss" scoped>
 .bx-header-container {
-  position: sticky;
+  position: fixed;
+  left: 0;
   top: 0;
   width: 100%;
   padding: 8px 0;
@@ -121,9 +121,6 @@ async function scrollToTop() {
   }
 
   &.transparent {
-    position: fixed;
-    left: 0;
-    top: 0;
     width: 100%;
     background-color: transparent;
     --content-color: #{$whiteColor};
@@ -140,8 +137,8 @@ async function scrollToTop() {
       @media (max-width: $mobileBreakpoint) {
         --logo-color: #{$whiteColor};
 
-        .bx-logo-container .bx-logo-text,
-        .bx-logo-container .bx-logo-text strong {
+        .bx-logo-text,
+        .bx-logo-text strong {
           color: $whiteColor;
         }
       }
@@ -152,15 +149,22 @@ async function scrollToTop() {
     background-color: $backgroundColor;
     --content-color: #{$brandColor};
 
-    .bx-logo-container {
-      .bx-logo-text {
-        transform: translate(-5px, 0);
-        opacity: 0;
-      }
+    .bx-logo-text {
+      transform: translate(0, -5px);
+      opacity: 0 !important;
+    }
 
+    .bx-logo-container {
       .bx-logo-icon {
         width: 36px;
       }
+    }
+  }
+
+  &.menu-open {
+    .bx-logo-text {
+      transform: translate(0, -5px);
+      opacity: 0 !important;
     }
   }
 
@@ -215,32 +219,41 @@ async function scrollToTop() {
     gap: 48px;
   }
 
+  .bx-logo-text {
+    font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+    transform: translate(0, 0);
+    line-height: 1;
+    letter-spacing: -0.02rem;
+    color: $brandColor;
+    cursor: pointer;
+    opacity: 0;
+    
+    @media (max-width: $mobileBreakpoint) {
+      opacity: 0 !important;
+    }
+
+    &.show-logo {
+      opacity: 1;
+    }
+
+    strong {
+      font-weight: 700;
+      color: #1b2c77;
+      transition: all 0.3s ease-in-out;
+    }
+
+    @media (max-width: $mobileBreakpoint) {
+      font-size: 1.1rem;
+    }
+  }
+
   .bx-logo-container {
     cursor: pointer;
     user-select: none;
     display: flex;
     align-items: center;
     gap: 8px;
-
-    .bx-logo-text {
-      font-size: 1.2rem;
-      line-height: 1;
-      transition: all 0.3s ease-in-out;
-      transform: translate(0, 0);
-      opacity: 1;
-      letter-spacing: -0.02rem;
-      color: #555b77;
-
-      strong {
-        font-weight: 700;
-        color: #1b2c77;
-        transition: all 0.3s ease-in-out;
-      }
-
-      @media (max-width: $mobileBreakpoint) {
-        font-size: 1.1rem;
-      }
-    }
 
     a {
       display: inline-block;
