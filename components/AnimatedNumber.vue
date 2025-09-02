@@ -90,7 +90,7 @@ onUnmounted(() => {
     align-items: baseline;
     gap: 1rem;
     font-size: 5rem;
-    font-weight: 600;
+    font-weight: $boldFontWeight;
   }
 
   .bx-name {

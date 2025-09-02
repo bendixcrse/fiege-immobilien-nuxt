@@ -238,7 +238,7 @@ async function navigateHome() {
     }
 
     strong {
-      font-weight: 700;
+      font-weight: $boldFontWeight;
       color: #1b2c77;
       transition: all 0.3s ease-in-out;
     }

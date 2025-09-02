@@ -274,7 +274,7 @@ function submenuHasItems(subItems: any) {
         a {
           color: inherit;
           font-size: 32px;
-          font-weight: 600;
+          font-weight: $boldFontWeight;
           transition: all 0.3s ease-in-out;
 
           @media (max-width: $mobileBreakpoint) {

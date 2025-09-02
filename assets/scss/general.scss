@@ -1,11 +1,14 @@
+ @import url("https://use.typekit.net/evu1uga.css");
+
 body {
-  font-family: "Red Hat Display", sans-serif;
+  font-family: myriad-variable, "Red Hat Display", sans-serif;
   font-weight: 400;
   margin: 0;
   padding: 0;
   background-color: $backgroundColor;
   color: $fontColor;
   font-size: 16px;
+  // font-variation-settings: "wdth" 100, "wght" 400;
 
   a {
     color: $fontColor;
@@ -22,8 +25,9 @@ body {
   h3,
   h4,
   h5,
-  h6 {
-    font-weight: 600;
+  h6,
+  strong {
+    font-weight: $boldFontWeight;
   }
 
   h2 {
@@ -37,7 +41,7 @@ body {
 
   .bx-overline {
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: $boldFontWeight;
     color: $accentColor;
     font-size: 16px;
   }

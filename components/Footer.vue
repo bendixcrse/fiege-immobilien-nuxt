@@ -107,7 +107,7 @@ const localePath = useLocalePath();
       color: #555b77;
       
       strong {
-        font-weight: 700;
+        font-weight: $boldFontWeight;
         color: #1b2c77;
       }
     }
@@ -137,7 +137,7 @@ const localePath = useLocalePath();
 
   .bx-company {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: $boldFontWeight;
     text-transform: uppercase;
     margin-bottom: 18px;
 
@@ -158,7 +158,7 @@ const localePath = useLocalePath();
 
   .bx-email-button {
     margin: 56px 0;
-    font-weight: 600;
+    font-weight: $boldFontWeight;
     text-transform: uppercase;
     display: flex;
     align-items: center;

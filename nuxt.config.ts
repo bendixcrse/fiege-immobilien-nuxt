@@ -123,6 +123,11 @@ export default defineNuxtConfig({
     },
   },
 
+  // Temporiraly fix for 404 on home
+  experimental: {
+    appManifest: false
+  },
+
   sitemap: {
     excludeAppSources: ["nuxt:prerender"],
     urls: async () => {
