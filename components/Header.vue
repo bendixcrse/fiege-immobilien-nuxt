@@ -110,7 +110,7 @@ async function navigateHome() {
   width: 100%;
   padding: 8px 0;
   z-index: 9999;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color .6s ease-in-out;
   background-color: $backgroundColor;
   border-bottom: 1px solid $lightGrey;
   --content-color: #{$brandColor};
@@ -152,12 +152,6 @@ async function navigateHome() {
     .bx-logo-text {
       transform: translate(0, -5px);
       opacity: 0 !important;
-    }
-
-    .bx-logo-container {
-      .bx-logo-icon {
-        width: 36px;
-      }
     }
   }
 
