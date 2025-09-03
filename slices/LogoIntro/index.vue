@@ -45,7 +45,7 @@ function finishAnimation() {
         :style="{ '--logo-url': `url(${slice.primary.logo.url})` }"
       ></div>
     </div> -->
-    <div class="bx-text-logo"><strong>Leif Fiege</strong> Immobilienmanagement</div>
+    <div class="bx-text-logo scroll-trigger animate--fade-in"><strong>Leif Fiege</strong> Immobilienmanagement</div>
   </section>
 </template>
 
@@ -71,7 +71,7 @@ function finishAnimation() {
 
     .bx-text-logo {
       @media (min-width: $mobileBreakpoint) {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         top: 30px;
       }
 
@@ -141,11 +141,16 @@ function finishAnimation() {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
-    color: $brandColor;
     font-size: 1.5rem;
     line-height: 1;
     letter-spacing: -0.02rem;
     transition: all .6s ease-in-out;
+    color: #555b77;
+    
+    strong {
+      color: $brandColor;
+      font-weight: 650;
+    }
 
     @media (max-width: $mobileBreakpoint) {
       text-align: center;

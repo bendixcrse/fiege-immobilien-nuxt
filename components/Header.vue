@@ -214,7 +214,7 @@ async function navigateHome() {
   }
 
   .bx-logo-text {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     transition: all 0.3s ease-in-out;
     transform: translate(0, 0);
     line-height: 1;
@@ -222,6 +222,7 @@ async function navigateHome() {
     color: $brandColor;
     cursor: pointer;
     opacity: 0;
+    color: #555b77;
     
     @media (max-width: $mobileBreakpoint) {
       opacity: 0 !important;
@@ -233,8 +234,9 @@ async function navigateHome() {
 
     strong {
       font-weight: $boldFontWeight;
-      color: #1b2c77;
+      color: $brandColor;
       transition: all 0.3s ease-in-out;
+      font-weight: 650;
     }
 
     @media (max-width: $mobileBreakpoint) {
