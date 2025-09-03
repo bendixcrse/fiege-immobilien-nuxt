@@ -1,4 +1,4 @@
-import { repositoryName, apiEndpoint } from "./slicemachine.config.json";
+import { repositoryName } from "./slicemachine.config.json";
 import { createClient } from "@prismicio/client";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -64,10 +64,10 @@ export default defineNuxtConfig({
   routeRules: {
     "/de/**": { redirect: "/" },
     "/de": { redirect: "/" },
-    "/hospitality-vip-arrangements": { robots: false, sitemap: false },
-    "/slice-simulator": { robots: false, sitemap: false },
-    "/api/preview": { robots: false, sitemap: false },
-    "/preview": { robots: false, sitemap: false },
+    "/hospitality-vip-arrangements": { robots: false,  },
+    "/slice-simulator": { robots: false },
+    "/api/preview": { robots: false },
+    "/preview": { robots: false },
   },
 
   modules: [
@@ -113,7 +113,7 @@ export default defineNuxtConfig({
   },
 
   prismic: {
-    endpoint: apiEndpoint || repositoryName,
+    endpoint: repositoryName,
     // preview: "/api/preview",
     clientConfig: {
       routes: [

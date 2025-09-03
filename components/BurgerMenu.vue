@@ -182,8 +182,7 @@ function submenuHasItems(subItems: any) {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    backdrop-filter: blur(20px);
-    background-color: rgba($brandColor, 0.95);
+    background-color: $brandColor;
     clip-path: inset(0% 0% 0%);
     transition: clip-path 0.5s ease-in-out;
 
