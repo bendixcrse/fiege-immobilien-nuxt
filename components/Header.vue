@@ -76,7 +76,7 @@ async function navigateHome() {
           <div class="bx-language-icon"></div>
           <ul>
             <li v-for="lang in alternateLanguages" :key="lang.lang">
-              <PrismicLink :field="{ ...lang, link_type: 'Document' }">
+              <PrismicLink :field="{ link_type: 'Document', tags: [], ...lang }">
                 <span class="sr-only">{{ lang.lang.split("-")[0] }}</span>
               </PrismicLink>
             </li>
@@ -124,7 +124,7 @@ async function navigateHome() {
     width: 100%;
     background-color: transparent;
     --content-color: #{$whiteColor};
-    border-bottom: 1px solid rgba($lightGrey, 0.1);
+    border-bottom: 0;
 
     &:not(.scrolled, .menu-open) {
       .bx-logo-container .bx-logo-text {
@@ -148,11 +148,6 @@ async function navigateHome() {
   &.scrolled {
     background-color: $backgroundColor;
     --content-color: #{$brandColor};
-
-    .bx-logo-text {
-      transform: translate(0, -5px);
-      opacity: 0 !important;
-    }
   }
 
   &.menu-open {

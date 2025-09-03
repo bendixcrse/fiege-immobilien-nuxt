@@ -36,7 +36,7 @@ function submenuHasItems(subItems: any) {
             <div class="bx-submenu-container" v-if="submenuHasItems(item.sub_items)">
               <ul>
                 <li v-for="(link, linkIndex) of item.sub_items" :key="linkIndex">
-                  <PrismicLink @click="closeMenu" :document="link">{{
+                  <PrismicLink @click="closeMenu" :field="link">{{
                     link.text
                   }}</PrismicLink>
                 </li>
