@@ -14,8 +14,8 @@ const localePath = useLocalePath();
       ></div>
 
       <div class="bx-logo-container animate--slide-in scroll-trigger">
-        <div class="bx-logo-icon" v-if="settings?.data.logo.url" :style="{'--logo-url': `url(${settings?.data.logo.url})`}"></div>
-        <div class="bx-logo-text"><strong>Leif Fiege</strong><br>Immobilienmanagement</div>
+        <!-- <div class="bx-logo-icon" v-if="settings?.data.logo.url" :style="{'--logo-url': `url(${settings?.data.logo.url})`}"></div> -->
+        <div class="bx-logo-text"><strong>Leif Fiege</strong> Immobilienmanagement</div>
       </div>
 
       <!-- <div class="bx-company animate--slide-in scroll-trigger" data-cascade>
@@ -25,20 +25,19 @@ const localePath = useLocalePath();
       <div class="bx-address animate--slide-in scroll-trigger" data-cascade>
         {{ settings?.data.address }}
       </div>
-      <div
-        class="bx-telephone animate--slide-in scroll-trigger"
-        v-if="!!settings?.data.contact_telephone"
-        data-cascade
-      >
-        <a :href="'tel:' + settings?.data.contact_telephone">{{
-          settings?.data.contact_telephone
-        }}</a>
-      </div>
 
-      <div class="bx-email-button animate--slide-in scroll-trigger" data-cascade>
-        <a :href="'mailto:' + settings?.data.contact_email">{{
-          settings?.data.contact_email
-        }}</a>
+      <div class="bx-contact-container">
+        <div class="bx-email-button animate--slide-in scroll-trigger" data-cascade>
+          <a :href="'mailto:' + settings?.data.contact_email">{{
+            settings?.data.contact_email
+          }}</a>
+        </div>
+
+        <div class="bx-telephone-button animate--slide-in scroll-trigger" data-cascade>
+          <a :href="'tel:' + settings?.data.contact_telephone">{{
+            settings?.data.contact_telephone
+          }}</a>
+        </div>
       </div>
 
       <div
@@ -83,7 +82,8 @@ const localePath = useLocalePath();
   overflow: hidden;
   --content-color: #{$blackColor};
   color: var(--content-color);
-  border-top: 1px solid $lightGrey;
+  border-top: 1px solid $blackColor;
+  margin-top: 112px;
 
   @media (max-width: $mobileBreakpoint) {
     padding: 28px 0;
@@ -95,17 +95,21 @@ const localePath = useLocalePath();
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 32px;
+    margin: 0 0 0.8rem;
 
     .bx-logo-text {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       line-height: 1;
       transition: all 0.3s ease-in-out;
       transform: translate(0, 0);
       opacity: 1;
       letter-spacing: -0.02rem;
       color: #555b77;
-      
+
+      @media (max-width: $mobileBreakpoint) {
+        font-size: 1.3rem;
+      }
+
       strong {
         font-weight: $boldFontWeight;
         color: #1b2c77;
@@ -127,11 +131,6 @@ const localePath = useLocalePath();
       transition: all 0.3s ease-in-out;
       user-select: none;
       cursor: pointer;
-
-      // @media (max-width: $mobileBreakpoint) {
-      //   width: 36px;
-      //   height: 36px;
-      // }
     }
   }
 
@@ -148,7 +147,7 @@ const localePath = useLocalePath();
   }
 
   .bx-address {
-    font-size: 16px;
+    font-size: 18px;
     text-transform: uppercase;
 
     @media (max-width: $mobileBreakpoint) {
@@ -156,15 +155,20 @@ const localePath = useLocalePath();
     }
   }
 
-  .bx-email-button {
-    margin: 56px 0;
+  .bx-contact-container {
+    margin: 58px 0;
     font-weight: $boldFontWeight;
     text-transform: uppercase;
+  }
+
+  .bx-telephone-button,
+  .bx-email-button {
     display: flex;
     align-items: center;
     gap: 36px;
     font-size: 20px;
     white-space: nowrap;
+    margin: 12px 0;
 
     &:hover {
       --content-color: #{$brandColor};
@@ -177,9 +181,9 @@ const localePath = useLocalePath();
 
     &:before {
       content: "";
-      height: 25px;
-      width: 25px;
-      mask-image: url(../assets/media/arrow-top-right.svg);
+      height: 28px;
+      width: 28px;
+      mask-image: var(--icon-url);
       mask-position: center;
       mask-repeat: no-repeat;
       mask-size: contain;
@@ -187,10 +191,18 @@ const localePath = useLocalePath();
       transition: all 0.3s ease-in-out;
 
       @media (max-width: $mobileBreakpoint) {
-        width: 18px;
-        height: 18px;
+        width: 24px;
+        height: 24px;
       }
     }
+  }
+
+  .bx-telephone-button {
+    --icon-url: url("~/assets/media/telephone-icon.svg");
+  }
+
+  .bx-email-button {
+    --icon-url: url("~/assets/media/email-icon.svg");
   }
 
   .bx-social-media-menu {
