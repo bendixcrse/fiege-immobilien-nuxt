@@ -7,7 +7,7 @@ defineProps(
 </script>
 
 <template>
-  <section :data-slice-type="slice.slice_type" :data-slice-variation="slice.variation">
+  <section class="bx-section-vertical-spacing-small" :data-slice-type="slice.slice_type" :data-slice-variation="slice.variation">
     <div class="bx-team-grid-container">
       <div
         class="bx-team-member-item"
@@ -31,22 +31,32 @@ defineProps(
 .bx-team-grid-container {
   display: flex;
   flex-wrap: wrap;
-  border-top: 1px solid $blackColor;
-  border-bottom: 1px solid $blackColor;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  --border-color: #{$blackColor};
+
+  @media (max-width: $mobileBreakpoint) {
+    border: 0;
+  }
 
   .bx-team-member-item {
     flex: 0 0 calc(33.3333% - 2px);
     overflow: hidden;
     position: relative;
     font-size: 18px;
-    color: #000;
-    border-right: 1px solid $blackColor;
-    border-bottom: 1px solid $blackColor;
+    color: #fff;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: -1px;
+    padding: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 
     @media (max-width: $mobileBreakpoint) {
       flex: 0 0 calc(50% - 1px);
       font-size: 16px;
+      padding: 0;
+      border-color: #fff;
     }
 
     &:nth-child(3n) {
@@ -62,19 +72,21 @@ defineProps(
     }
 
     &:hover {
-      color: #fff;
+      // padding: 0;
 
       .bx-image-wrapper {
-        opacity: 1;
+        filter: grayscale(0%);
       }
     }
 
     .bx-image-wrapper {
       position: relative;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
+      opacity: 1;
+      transition: filter 0.3s ease-in-out;
       z-index: 0;
       background: #000;
+      filter: grayscale(100%);
+      height: calc(100% - 1px);
     }
 
     .bx-member-info {
@@ -85,7 +97,7 @@ defineProps(
       width: 100%;
       display: flex;
       flex-direction: column;
-      padding: 2em;
+      padding: 2.5em;
       box-sizing: border-box;
       z-index: 0;
 

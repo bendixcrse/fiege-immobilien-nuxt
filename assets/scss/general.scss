@@ -161,14 +161,26 @@ section:not(.bx-full-width) {
   
   &.bx-section-vertical-spacing-small {
     padding: 1.5rem 0;
+
+    @media(max-width: $mobileBreakpoint) {
+      padding: 1rem 0;
+    }
   }
 
   &.bx-section-vertical-spacing-normal {
     padding: 3rem 0;
+
+    @media(max-width: $mobileBreakpoint) {
+      padding: 2rem 0;
+    }
   }
 
   &.bx-section-vertical-spacing-large {
     padding: 8rem 0;
+
+    @media(max-width: $mobileBreakpoint) {
+      padding: 6rem 0;
+    }
   }
 }
 

@@ -68,13 +68,13 @@ defineProps(
     }
 
     .bx-text {
-      font-size: 2rem;
+      font-size: 1.6rem;
       line-height: 1.3;
       margin: 0.5em 0 1em;
       font-weight: 300;
 
       @media (max-width: $mobileBreakpoint) {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
       }
 
       :deep(p) {
